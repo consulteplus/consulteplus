@@ -1,0 +1,149 @@
+/* Esconder navbar-top em desktop */
+@media (min-width: 768px) {
+    .navbar-top {
+        display: none !important;
+    }
+}
+
+/* EM MOBILE, esconder navbar-top */
+@media (max-width: 767px) {
+    .navbar-top {
+        display: none !important;
+    }
+
+    /* FORÇA SIDEBAR A DESAPARECER COMPLETAMENTE */
+    #sidebarMenu,
+    nav.sidebar,
+    .sidebar,
+    .col-md-3,
+    .col-lg-2 {
+        display: none !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        flex: 0 0 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: absolute !important;
+        left: -9999px !important;
+    }
+
+    /* MAIN OCUPA 100% DA TELA */
+    main,
+    main.col-md-9,
+    main.col-lg-10 {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        min-width: 100vw !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        flex: 1 1 100% !important;
+    }
+
+    /* CONTAINER SEM RESTRIÇÕES */
+    .container-fluid,
+    .container-fluid>.row {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* PREVENIR SCROLL HORIZONTAL */
+    body,
+    html {
+        overflow-x: hidden !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
+    }
+}
+
+/* Ajustar espaçamento do main sem a navbar */
+main.col-md-9 {
+    padding-top: 24px;
+}
+
+/* --- THEME OVERRIDES --- */
+:root {
+    --primary-color: #1D2F5F !important;
+    --primary-hover: #142347 !important;
+    /* Darker shade */
+    --primary-light: #e8ecf5 !important;
+    /* Very light tint */
+}
+
+/* Text Primary */
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Background Primary */
+.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background-color: var(--primary-hover) !important;
+    border-color: var(--primary-hover) !important;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-primary:active,
+.btn-outline-primary.active {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* Links */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--primary-hover);
+}
+
+/* Pagination */
+.page-item.active .page-link {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.page-link {
+    color: var(--primary-color) !important;
+}
+
+/* Nav Pills & Tabs */
+.nav-pills .nav-link.active,
+.nav-pills .show>.nav-link {
+    background-color: var(--primary-color) !important;
+}
+
+.nav-link {
+    color: #6c757d;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+/* Dropdowns */
+.dropdown-item:active,
+.dropdown-item.active {
+    background-color: var(--primary-color) !important;
+}

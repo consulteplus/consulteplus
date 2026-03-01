@@ -1,0 +1,16 @@
+{
+    "webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/cinco",
+    "roadmap_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/tarefas-diagnostico",
+    "analysis_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/projetos",
+    "mentoria_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/criar-produto",
+    "roteiro_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/criar-roteiro",
+    "task_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/criar-tarefa",
+    "project_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/criar-projeto",
+    "diagnostic_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/criar-diagnostico",
+    "maps_webhook_url": "https://automation-n8n.v4riem.easypanel.host/webhook/google-maps-consulteplus",
+    "linkedin_webhook_url": "",
+    "whatsapp_webhook_url": "",
+    "api_token": "",
+    "ativo": 1,
+    "updated_at": "<?php echo date('Y-m-d H:i:s'); ?>"
+}

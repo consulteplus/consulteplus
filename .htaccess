@@ -1,0 +1,277 @@
+RewriteEngine On
+# RewriteBase será detectado automaticamente
+RewriteBase /consulteplus/
+# Em desenvolvimento: /cinco/
+# Em produção: /
+
+# Auth Routes
+RewriteRule ^login/?$ login.php [L]
+RewriteRule ^cadastro/?$ cadastro.php [L]
+RewriteRule ^logout/?$ logout.php [L]
+
+# Redirecionar para HTTPS (opcional, descomente se tiver SSL)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# CORREÇÃO CRÍTICA PARA API (Bearer Token)
+# Garante que o header Authorization chegue no PHP
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Agendamento Online Público
+RewriteRule ^agendar(.*)$ agend_online/index.php [L,QSA]
+RewriteRule ^api/public/(.*)$ api/public/$1 [L,QSA]
+
+RewriteRule ^relatorios/?$ modules/relatorios/index.php [L]
+RewriteRule ^relatorios/atendimentos/?$ modules/relatorios/atendimentos.php [L]
+RewriteRule ^relatorios/ociosidade/?$ modules/relatorios/ociosidade.php [L]
+RewriteRule ^relatorios/produtividade/?$ modules/relatorios/produtividade.php [L]
+RewriteRule ^relatorios/financeiro/?$ modules/relatorios/financeiro.php [L]
+
+RewriteRule ^minhas-notificacoes/?$ modules/minhas-notificacoes/index.php [L]
+RewriteRule ^notificacoes/?$ modules/notificacoes/index.php [L]
+RewriteRule ^notificacoes/nova/?$ modules/notificacoes/nova.php [L]
+RewriteRule ^notificacoes/editar/([0-9]+)/?$ modules/notificacoes/editar.php?id=$1 [L]
+RewriteRule ^notificacoes/log/?$ modules/notificacoes/log.php [L]
+
+RewriteRule ^configuracoes/?$ modules/configuracoes/index.php [L]
+RewriteRule ^configuracoes/n8n/?$ modules/configuracoes/n8n.php [L]
+
+RewriteRule ^documentacao/?$ modules/documentacao/index.php [L]
+
+RewriteRule ^bloqueios/?$ modules/bloqueios/index.php [L]
+RewriteRule ^bloqueios/novo/?$ modules/bloqueios/novo.php [L]
+RewriteRule ^bloqueios/editar/([0-9]+)/?$ modules/bloqueios/editar.php?id=$1 [L]
+
+RewriteRule ^prontuarios/?$ modules/prontuarios/index.php [L]
+RewriteRule ^prontuarios/novo/([0-9]+)/?$ modules/prontuarios/novo.php?agendamento_id=$1 [L]
+RewriteRule ^prontuarios/editar/([0-9]+)/?$ modules/prontuarios/editar.php?id=$1 [L]
+RewriteRule ^prontuarios/([0-9]+)/?$ modules/prontuarios/visualizar.php?id=$1 [L]
+
+# Catch all - must be last
+# URLs amigáveis para módulos
+# CRM
+RewriteRule ^crm/?$ modules/crm/index.php [L,QSA]
+RewriteRule ^crm/config/?$ modules/crm/config.php [L,QSA]
+RewriteRule ^crm/negocio/([0-9]+)$ modules/crm/detalhes.php?id=$1 [L,QSA]
+RewriteRule ^crm/quadro/?([0-9]*)$ modules/crm/index.php?view=quadro&funil=$1 [L,QSA]
+RewriteRule ^crm/lista/?([0-9]*)$ modules/crm/index.php?view=lista&funil=$1 [L,QSA]
+
+RewriteRule ^dashboard/?$ modules/dashboard/index.php [L]
+
+RewriteRule ^pacientes/?$ modules/pacientes/index.php [L]
+RewriteRule ^pacientes/novo/?$ modules/pacientes/novo.php [L]
+RewriteRule ^pacientes/editar/([0-9]+)/?$ modules/pacientes/editar.php?id=$1 [L]
+RewriteRule ^pacientes/([0-9]+)/?$ modules/pacientes/visualizar.php?id=$1 [L]
+
+RewriteRule ^profissionais/?$ modules/profissionais/index.php [L]
+RewriteRule ^profissionais/novo/?$ modules/profissionais/novo.php [L]
+RewriteRule ^profissionais/editar/([0-9]+)/?$ modules/profissionais/editar.php?id=$1 [L]
+RewriteRule ^profissionais/notificacoes/?$ modules/profissionais/notificacoes.php [L]
+RewriteRule ^profissionais/([0-9]+)/?$ modules/profissionais/visualizar.php?id=$1 [L]
+
+RewriteRule ^salas/?$ modules/salas/index.php [L]
+RewriteRule ^salas/novo/?$ modules/salas/novo.php [L]
+RewriteRule ^salas/editar/([0-9]+)/?$ modules/salas/editar.php?id=$1 [L]
+RewriteRule ^salas/([0-9]+)/?$ modules/salas/visualizar.php?id=$1 [L]
+RewriteRule ^salas/alocacao/?$ modules/salas/alocacao.php [L]
+RewriteRule ^especialidades/?$ modules/especialidades/index.php [L]
+RewriteRule ^especialidades/novo/?$ modules/especialidades/novo.php [L]
+RewriteRule ^especialidades/editar/([0-9]+)/?$ modules/especialidades/editar.php?id=$1 [L]
+RewriteRule ^especialidades/excluir/([0-9]+)/?$ modules/especialidades/excluir.php?id=$1 [L]
+
+RewriteRule ^tipos-procedimento/?$ modules/tipos-procedimento/index.php [L]
+RewriteRule ^tipos-procedimento/novo/?$ modules/tipos-procedimento/novo.php [L]
+RewriteRule ^tipos-procedimento/editar/([0-9]+)/?$ modules/tipos-procedimento/editar.php?id=$1 [L]
+
+RewriteRule ^alocacao/?$ modules/alocacao/index.php [L]
+RewriteRule ^alocacao/nova/?$ modules/alocacao/nova.php [L]
+RewriteRule ^alocacao/editar/([0-9]+)/?$ modules/alocacao/editar.php?id=$1 [L]
+
+
+RewriteRule ^agendamentos/?$ modules/agendamentos/index.php [L]
+RewriteRule ^agendamentos/calendario/?$ modules/agendamentos/calendario.php [L]
+RewriteRule ^agendamentos/novo/?$ modules/agendamentos/novo.php [L]
+RewriteRule ^agendamentos/confirmar-recorrente/?$ modules/agendamentos/confirmar-recorrente.php [L]
+RewriteRule ^agendamentos/editar/([0-9]+)/?$ modules/agendamentos/editar.php?id=$1 [L]
+RewriteRule ^agendamentos/([0-9]+)/?$ modules/agendamentos/visualizar.php?id=$1 [L]
+RewriteRule ^agendamentos/series/?$ modules/agendamentos/series.php [L]
+RewriteRule ^agendamentos/editar-serie/([a-zA-Z0-9-]+)/?$ modules/agendamentos/editar-serie.php?id=$1 [L]
+RewriteRule ^agendamentos/cancelar-serie/([a-zA-Z0-9-]+)/?$ modules/agendamentos/cancelar-serie.php?id=$1 [L]
+
+RewriteRule ^prontuarios/?$ modules/prontuarios/index.php [L]
+RewriteRule ^prontuarios/novo/?$ modules/prontuarios/novo.php [L]
+RewriteRule ^prontuarios/editar/([0-9]+)/?$ modules/prontuarios/editar.php?id=$1 [L]
+RewriteRule ^prontuarios/([0-9]+)/?$ modules/prontuarios/visualizar.php?id=$1 [L]
+
+RewriteRule ^notificacoes/?$ modules/notificacoes/index.php [L]
+RewriteRule ^notificacoes/nova/?$ modules/notificacoes/nova.php [L]
+RewriteRule ^notificacoes/editar/([0-9]+)/?$ modules/notificacoes/editar.php?id=$1 [L]
+RewriteRule ^notificacoes/log/?$ modules/notificacoes/log.php [L]
+
+RewriteRule ^relatorios/?$ modules/relatorios/index.php [L]
+RewriteRule ^relatorios/atendimentos/?$ modules/relatorios/atendimentos.php [L]
+RewriteRule ^relatorios/ociosidade/?$ modules/relatorios/ociosidade.php [L]
+RewriteRule ^relatorios/produtividade/?$ modules/relatorios/produtividade.php [L]
+RewriteRule ^relatorios/financeiro-dre/?$ modules/relatorios/financeiro_dre.php [L]
+
+RewriteRule ^financeiro/?$ modules/financeiro/index.php [L]
+RewriteRule ^financeiro/novo/?$ modules/financeiro/novo.php [L]
+RewriteRule ^financeiro/editar/([0-9]+)/?$ modules/financeiro/editar.php?id=$1 [L]
+RewriteRule ^financeiro/editar-serie/([^/]+)/?$ modules/financeiro/editar-serie.php?id=$1 [L]
+RewriteRule ^financeiro/assinatura/?$ modules/financeiro/minha_assinatura.php [L]
+
+RewriteRule ^configuracoes/?$ modules/configuracoes/index.php [L]
+RewriteRule ^configuracoes/n8n/?$ modules/configuracoes/n8n.php [L]
+RewriteRule ^configuracoes/agendamento-online/?$ modules/configuracoes/agendamento-online.php [L]
+RewriteRule ^configuracoes/financeiro/?$ modules/configuracoes/financeiro.php [L]
+RewriteRule ^configuracoes/tokens/?$ modules/configuracoes/tokens.php [L]
+
+RewriteRule ^usuarios/?$ modules/usuarios/index.php [L]
+RewriteRule ^usuarios/novo/?$ modules/usuarios/novo.php [L]
+RewriteRule ^usuarios/editar/([0-9]+)/?$ modules/usuarios/editar.php?id=$1 [L]
+
+RewriteRule ^minhas-notificacoes/?$ modules/minhas-notificacoes/index.php [L]
+RewriteRule ^profissionais/notificacoes/?$ modules/profissionais/notificacoes.php [L]
+
+RewriteRule ^gestao/?$ modules/gestao/index.php [L]
+RewriteRule ^gestao/tarefas/?$ modules/gestao/tarefas/index.php [L]
+RewriteRule ^gestao/tarefas/([0-9]+)/?$ modules/gestao/tarefas/detalhe.php?id=$1 [L,QSA]
+RewriteRule ^gestao/tarefas/detalhe/?$ modules/gestao/tarefas/detalhe.php [L,QSA]
+RewriteRule ^gestao/diagnostico/?$ modules/gestao/diagnostico/index.php [L]
+RewriteRule ^gestao/diagnostico/novo/?$ modules/gestao/diagnostico/formulario.php [L]
+RewriteRule ^gestao/diagnostico/resultado/?$ modules/gestao/diagnostico/resultado.php [L]
+RewriteRule ^gestao/diagnostico/resultado/([0-9]+)/?$ modules/gestao/diagnostico/resultado.php?id=$1 [L]
+RewriteRule ^gestao/diagnostico/roadmap/?$ modules/gestao/diagnostico/roadmap.php [L]
+RewriteRule ^gestao/diagnostico/roadmap/([0-9]+)/?$ modules/gestao/diagnostico/roadmap.php?id=$1 [L]
+RewriteRule ^gestao/planejamento/?$ modules/gestao/planejamento/index.php [L]
+RewriteRule ^gestao/projetos/?$ modules/gestao/projetos/index.php [L]
+RewriteRule ^gestao/projetos/novo/?$ modules/gestao/projetos/novo.php [L]
+RewriteRule ^gestao/projetos/detalhe.php/?$ modules/gestao/projetos/detalhe.php [L,QSA]
+RewriteRule ^gestao/projetos/([0-9]+)/?$ modules/gestao/projetos/detalhe.php?id=$1 [L,QSA]
+
+# Admin Routes (Clean URLs)
+RewriteRule ^admin/dashboard/?$ modules/admin/dashboard/index.php [L]
+RewriteRule ^admin/usuarios/?$ modules/admin/usuarios/index.php [L]
+RewriteRule ^admin/empresas/view/([0-9]+)/?$ modules/admin/empresas/view.php?id=$1 [L]
+RewriteRule ^admin/empresas/?$ modules/admin/empresas/index.php [L]
+RewriteRule ^admin/financeiro/nova-assinatura/?$ modules/admin/financeiro/nova_assinatura.php [L]
+RewriteRule ^admin/financeiro/?$ modules/admin/financeiro/index.php [L]
+RewriteRule ^admin/ferramentas/editar/([0-9]+)/?$ modules/admin/ferramentas/editar.php?id=$1 [L]
+RewriteRule ^admin/ferramentas/editar/?$ modules/admin/ferramentas/editar.php [L,QSA]
+RewriteRule ^admin/ferramentas/?$ modules/admin/ferramentas/index.php [L]
+
+# CRM (Admin)
+RewriteRule ^admin/crm/?$ modules/admin/crm/index.php [L,QSA]
+RewriteRule ^admin/crm/config/?$ modules/admin/crm/config.php [L,QSA]
+RewriteRule ^admin/crm/negocio/([0-9]+)$ modules/admin/crm/detalhes.php?id=$1 [L,QSA]
+RewriteRule ^admin/crm/quadro/?([0-9]*)$ modules/admin/crm/index.php?view=quadro&funil=$1 [L,QSA]
+RewriteRule ^admin/crm/lista/?([0-9]*)$ modules/admin/crm/index.php?view=lista&funil=$1 [L,QSA]
+RewriteRule ^admin/marketing/gerador_leads/?$ modules/admin/marketing/gerador_leads/index.php [L]
+RewriteRule ^admin/marketing/gerador_leads/acoes/?$ modules/admin/marketing/gerador_leads/acoes.php [L]
+RewriteRule ^admin/marketing/gerador_leads/webhook/?$ modules/admin/marketing/gerador_leads/webhook_receiver.php [L]
+RewriteRule ^admin/marketing/gerador_leads/visualizar_retorno/?$ modules/admin/marketing/gerador_leads/visualizar_retorno.php [L]
+
+# Marketing (Admin)
+RewriteRule ^admin/marketing/leads/([0-9]+)/?$ modules/admin/marketing/leads/ver.php?id=$1 [L]
+
+# Atendimento (Admin)
+RewriteRule ^admin/atendimento/agentes/?$ modules/admin/atendimento/agentes/index.php [L]
+RewriteRule ^admin/atendimento/chats/?$ modules/admin/atendimento/agentes/chats.php [L]
+RewriteRule ^admin/atendimento/agentes/acoes/?$ modules/admin/atendimento/agentes/acoes.php [L,QSA]
+RewriteRule ^admin/atendimento/agentes/conversas/?$ modules/admin/atendimento/agentes/conversas.php [L,QSA]
+
+# Redirect Legacy Mentoria URLs (301 Permanent)
+RedirectMatch 301 ^/consulteplus/admin/mentoria/(.*)$ /consulteplus/admin/produtos/$1
+RedirectMatch 301 ^/consulteplus/admin/mentoria$ /consulteplus/admin/produtos
+RedirectMatch 301 ^/consulteplus/mentoria/(.*)$ /consulteplus/produtos/$1
+RedirectMatch 301 ^/consulteplus/mentoria$ /consulteplus/produtos
+
+# Produtos (LMS - Mentoria, Cursos, etc)
+RewriteRule ^admin/produtos/?$ modules/admin/produtos/index.php [L]
+RewriteRule ^admin/produtos/produto/?$ modules/admin/produtos/produto.php [L,QSA]
+RewriteRule ^admin/produtos/produto/([0-9]+)/?$ modules/admin/produtos/produto.php?id=$1 [L,QSA]
+RewriteRule ^admin/produtos/trilhas/([0-9]+)/?$ modules/admin/produtos/trilhas.php?produto_id=$1 [L,QSA]
+RewriteRule ^admin/produtos/trilhas/?$ modules/admin/produtos/trilhas.php [L,QSA]
+RewriteRule ^admin/produtos/conteudo/([0-9]+)/?$ modules/admin/produtos/conteudo.php?id=$1 [L,QSA]
+RewriteRule ^admin/produtos/conteudo/?$ modules/admin/produtos/conteudo.php [L,QSA]
+RewriteRule ^admin/produtos/distribuir/([0-9]+)/?$ modules/admin/produtos/distribuir.php?id=$1 [L,QSA]
+RewriteRule ^admin/produtos/distribuir/?$ modules/admin/produtos/distribuir.php [L,QSA]
+RewriteRule ^admin/produtos/ia-generator/([0-9]+)/?$ modules/admin/produtos/ia_modulo_generator.php?produto_id=$1 [L,QSA]
+RewriteRule ^admin/produtos/ia_generator/?$ modules/admin/produtos/ia_generator.php [L]
+RewriteRule ^admin/produtos/ia_modulo_generator/?$ modules/admin/produtos/ia_modulo_generator.php [L,QSA]
+RewriteRule ^admin/produtos/salvar_ia/?$ modules/admin/produtos/salvar_ia.php [L]
+
+# Diagnósticos (Admin)
+RewriteRule ^admin/diagnosticos/?$ modules/admin/diagnosticos/index.php [L]
+RewriteRule ^admin/diagnosticos/perguntas/([0-9]+)/?$ modules/admin/diagnosticos/perguntas.php?modelo_id=$1 [L,QSA]
+RewriteRule ^admin/diagnosticos/atribuir/?$ modules/admin/diagnosticos/atribuir.php [L]
+RewriteRule ^admin/diagnosticos/novo/?$ modules/admin/diagnosticos/novo.php [L]
+RewriteRule ^admin/diagnosticos/editar/([0-9]+)/?$ modules/admin/diagnosticos/editar.php?id=$1 [L]
+RewriteRule ^admin/diagnosticos/criar_completo/?$ modules/admin/diagnosticos/criar_completo.php [L]
+RewriteRule ^admin/diagnosticos/criar_ia/?$ modules/admin/diagnosticos/criar_ia.php [L]
+
+RewriteRule ^produtos/?$ modules/produtos/index.php [L]
+RewriteRule ^produtos/produto/([0-9]+)/?$ modules/produtos/produto.php?id=$1 [L]
+RewriteRule ^produtos/aula/([0-9]+)/?$ modules/produtos/aula.php?id=$1 [L]
+
+# Ferramentas Estratégicas
+RewriteRule ^ferramentas/?$ modules/ferramentas/index.php [L]
+
+# SWOT
+RewriteRule ^ferramentas/swot/?$ modules/ferramentas/swot/index.php [L]
+RewriteRule ^ferramentas/swot/novo/?$ modules/ferramentas/swot/form.php [L]
+RewriteRule ^ferramentas/swot/simular/?$ modules/ferramentas/swot/form.php?preview=1 [L]
+RewriteRule ^ferramentas/swot/editar/([0-9]+)/?$ modules/ferramentas/swot/form.php?id=$1 [L]
+RewriteRule ^ferramentas/swot/excluir/?$ modules/ferramentas/swot/excluir.php [L,QSA]
+
+# Porter
+RewriteRule ^ferramentas/porter/?$ modules/ferramentas/porter/index.php [L]
+RewriteRule ^ferramentas/porter/novo/?$ modules/ferramentas/porter/form.php [L]
+RewriteRule ^ferramentas/porter/simular/?$ modules/ferramentas/porter/form.php?preview=1 [L]
+RewriteRule ^ferramentas/porter/editar/([0-9]+)/?$ modules/ferramentas/porter/form.php?id=$1 [L]
+RewriteRule ^ferramentas/porter/excluir/?$ modules/ferramentas/porter/excluir.php [L,QSA]
+
+# BSC
+RewriteRule ^ferramentas/bsc/?$ modules/ferramentas/bsc/index.php [L]
+RewriteRule ^ferramentas/bsc/novo/?$ modules/ferramentas/bsc/form.php [L]
+RewriteRule ^ferramentas/bsc/simular/?$ modules/ferramentas/bsc/form.php?preview=1 [L]
+RewriteRule ^ferramentas/bsc/editar/([0-9]+)/?$ modules/ferramentas/bsc/form.php?id=$1 [L]
+RewriteRule ^ferramentas/bsc/excluir/?$ modules/ferramentas/bsc/excluir.php [L,QSA]
+
+# PESTEL
+RewriteRule ^ferramentas/pestel/?$ modules/ferramentas/pestel/index.php [L]
+RewriteRule ^ferramentas/pestel/novo/?$ modules/ferramentas/pestel/form.php [L]
+RewriteRule ^ferramentas/pestel/simular/?$ modules/ferramentas/pestel/form.php?preview=1 [L]
+RewriteRule ^ferramentas/pestel/editar/([0-9]+)/?$ modules/ferramentas/pestel/form.php?id=$1 [L]
+RewriteRule ^ferramentas/pestel/excluir/?$ modules/ferramentas/pestel/excluir.php [L,QSA]
+
+# MIX (4 Ps)
+RewriteRule ^ferramentas/mix/?$ modules/ferramentas/mix/index.php [L]
+RewriteRule ^ferramentas/mix/novo/?$ modules/ferramentas/mix/form.php [L]
+RewriteRule ^ferramentas/mix/simular/?$ modules/ferramentas/mix/form.php?preview=1 [L]
+RewriteRule ^ferramentas/mix/editar/([0-9]+)/?$ modules/ferramentas/mix/form.php?id=$1 [L]
+RewriteRule ^ferramentas/mix/excluir/?$ modules/ferramentas/mix/excluir.php [L,QSA]
+
+# 5W2H
+RewriteRule ^ferramentas/5w2h/?$ modules/ferramentas/5w2h/index.php [L]
+RewriteRule ^ferramentas/5w2h/novo/?$ modules/ferramentas/5w2h/form.php [L]
+RewriteRule ^ferramentas/5w2h/simular/?$ modules/ferramentas/5w2h/form.php?preview=1 [L]
+RewriteRule ^ferramentas/5w2h/editar/([0-9]+)/?$ modules/ferramentas/5w2h/form.php?id=$1 [L]
+RewriteRule ^ferramentas/5w2h/excluir/?$ modules/ferramentas/5w2h/excluir.php [L,QSA]
+
+# BCG
+RewriteRule ^ferramentas/bcg/?$ modules/ferramentas/bcg/index.php [L]
+RewriteRule ^ferramentas/bcg/novo/?$ modules/ferramentas/bcg/form.php [L]
+RewriteRule ^ferramentas/bcg/simular/?$ modules/ferramentas/bcg/form.php?preview=1 [L]
+RewriteRule ^ferramentas/bcg/editar/([0-9]+)/?$ modules/ferramentas/bcg/form.php?id=$1 [L]
+RewriteRule ^ferramentas/bcg/excluir/?$ modules/ferramentas/bcg/excluir.php [L,QSA]
+
+# CANVAS
+RewriteRule ^ferramentas/canvas/?$ modules/ferramentas/canvas/index.php [L]
+RewriteRule ^ferramentas/canvas/novo/?$ modules/ferramentas/canvas/form.php [L]
+RewriteRule ^ferramentas/canvas/simular/?$ modules/ferramentas/canvas/form.php?preview=1 [L]
+RewriteRule ^ferramentas/canvas/editar/([0-9]+)/?$ modules/ferramentas/canvas/form.php?id=$1 [L]
+RewriteRule ^ferramentas/canvas/excluir/?$ modules/ferramentas/canvas/excluir.php [L,QSA]

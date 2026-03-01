@@ -1,0 +1,64 @@
+# ============================================================
+# Consulte+ — .gitignore
+# ============================================================
+
+# === SEGURANÇA: NUNCA COMMITAR ===
+.env
+*.key
+*.pem
+*.p12
+
+# === Logs ===
+logs/
+*.log
+cron/execucoes.log
+
+# === Dependências ===
+vendor/
+node_modules/
+
+# === Cache e arquivos temporários ===
+cache/
+tmp/
+temp/
+*.tmp
+*.cache
+
+# === Uploads de usuários ===
+uploads/
+storage/
+
+# === Arquivos de sistema ===
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# === IDE / Editores ===
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+nbproject/
+
+# === DUMPS E BACKUPS DE BANCO (dados reais — NUNCA commitar!) ===
+# As migrations em database/migrations/ e clientes/database/migrations/ SÃO commitadas
+clientes/database/backups/
+clientes/database/lixeira/
+modules/documentacao/*.sql
+clientes/modules/admin/*.sql
+
+# === CSVs temporários de import ===
+modules/admin/marketing/import/temp_*.csv
+clientes/modules/admin/marketing/import/temp_*.csv
+
+# === Respostas de API salvas localmente ===
+modules/admin/marketing/gerador_leads/last_response.json
+clientes/modules/admin/marketing/gerador_leads/last_response.json
+
+# === Arquivos de deploy sensíveis ===
+config/ftp_deploy.json
+clientes/config/ftp_deploy.json
+
+# === Tests locais ===
+tests/output/
+

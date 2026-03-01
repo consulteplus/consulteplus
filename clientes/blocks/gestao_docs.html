@@ -1,0 +1,157 @@
+
+        <!-- Módulo de Negócio & Estratégia (Gestão Deep Dive) -->
+        <div class="card mb-4 doc-section" id="gestao-deep-dive">
+            <div class="card-header bg-light text-dark" style="cursor: pointer;">
+                <h4 class="mb-0 d-flex justify-content-between align-items-center"><span><i
+                            class="bi bi-briefcase me-2"></i>Gestão Estratégica 2.0 (War Room)</span><i
+                        class="bi bi-chevron-down fs-6"></i></h4>
+            </div>
+            <div id="collapse-gestao-deep-dive" class="collapse">
+                <div class="card-body">
+                    <p class="lead">O módulo de Gestão Estratégica é o "cérebro" de negócios da clínica. Ele transforma
+                        diagnósticos e dados brutos em planos de ação executáveis, utilizando IA para sugerir caminhos e
+                        OKRs para medir progresso.</p>
+
+                    <hr>
+
+                    <h5 class="text-primary mt-4"><i class="bi bi-diagram-3 me-2"></i>1. Arquitetura em 4 Camadas</h5>
+                    <p>O sistema funciona como uma cascata de decisão:</p>
+                    <div class="mermaid">
+                        graph TD
+                        A[1. Diagnóstico] -->|IA Analisa| B[2. Projetos (War Room)]
+                        B -->|Planejamento| C[3. OKRs (Objetivos + KRs)]
+                        C -->|Execução| D[4. Tarefas (Kanban)]
+                        D -->|Feedback| A
+                    </div>
+                    
+                    <h5 class="text-primary mt-5"><i class="bi bi-ui-checks me-2"></i>2. Diagnóstico (Os 6 Pilares)</h5>
+                    <p>Todo projeto nasce de uma necessidade real. O sistema utiliza 6 pilares fundamentais para avaliar a saúde do negócio (Score 0 a 100):</p>
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <div class="card h-100 border-primary">
+                                <div class="card-body">
+                                    <h6 class="card-title text-primary fw-bold">1. Atração (CAC)</h6>
+                                    <p class="small mb-0">Marketing, Leads, Canais de Aquisição. <br><em>"Quantas pessoas novas chegam?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-success">
+                                <div class="card-body">
+                                    <h6 class="card-title text-success fw-bold">2. Conversão</h6>
+                                    <p class="small mb-0">Vendas, Scripts, Follow-up. <br><em>"Quantos visitantes viram pacientes?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-info">
+                                <div class="card-body">
+                                    <h6 class="card-title text-info fw-bold">3. Produtos (LTV)</h6>
+                                    <p class="small mb-0">Mix de Serviços, Precificação, Recorrência. <br><em>"Quanto o paciente gasta?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-warning">
+                                <div class="card-body">
+                                    <h6 class="card-title text-warning fw-bold">4. Jornada</h6>
+                                    <p class="small mb-0">Experiência do Paciente, NPS, Retenção. <br><em>"O paciente sai feliz?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-danger">
+                                <div class="card-body">
+                                    <h6 class="card-title text-danger fw-bold">5. Financeiro</h6>
+                                    <p class="small mb-0">Margem, Custos, Fluxo de Caixa. <br><em>"A conta fecha no azul?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card h-100 border-secondary">
+                                <div class="card-body">
+                                    <h6 class="card-title text-secondary fw-bold">6. Gestão & Pessoas</h6>
+                                    <p class="small mb-0">Liderança, Cultura, Processos. <br><em>"O time está engajado?"</em></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-light border mt-3">
+                        <strong>Cálculo de Maturidade:</strong> A IA analisa as respostas do formulário de cada pilar e atribui uma nota. Notas abaixo de 60% disparam sugestões automáticas de projetos de correção.
+                    </div>
+
+                    <h5 class="text-primary mt-5"><i class="bi bi-cpu me-2"></i>3. Integração com IA (N8N)</h5>
+                    <p>O "cérebro" da operação roda no N8N. O fluxo é:</p>
+                    <ol>
+                        <li>Usuário preenche Diagnóstico ou pede sugestão de Projeto.</li>
+                        <li>PHP envia Prompt Contextualizado (contendo respostas + pilares fracos) para webhook N8N.</li>
+                        <li>N8N consulta OpenAI (GPT-4o).</li>
+                        <li>IA retorna JSON estruturado contendo:
+                            <ul>
+                                <li><code>nome_projeto</code></li>
+                                <li><code>descricao</code> (Markdown)</li>
+                                <li><code>okrs</code> (Objetivos + Key Results)</li>
+                                <li><code>tarefas</code> (Ações práticas)</li>
+                            </ul>
+                        </li>
+                        <li>PHP renderiza "Preview" para aprovação do usuário.</li>
+                    </ol>
+
+                    <h5 class="text-primary mt-5"><i class="bi bi-list-check me-2"></i>4. Hierarquia de Execução</h5>
+                    <p>Diferente de sistemas simples de To-Do, aqui a estrutura é rígida para garantir foco:</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nível</th>
+                                    <th>O que é?</th>
+                                    <th>Exemplo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>1. Projeto</strong></td>
+                                    <td>A iniciativa macro, com início e fim.</td>
+                                    <td>"Implantação de Máquina de Vendas"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>2. Objetivos</strong></td>
+                                    <td>A direção qualitativa (Onde queremos chegar).</td>
+                                    <td>"Garantir previsibilidade de receita"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>3. KRs (Key Results)</strong></td>
+                                    <td>O indicador quantitativo (Como medimos).</td>
+                                    <td>"Aumentar conversão de 10% para 25%"</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>4. Tarefas</strong></td>
+                                    <td>A ação unitária diária.</td>
+                                    <td>"Configurar CRM", "Treinar recepcionista"</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h5 class="text-primary mt-5"><i class="bi bi-kanban me-2"></i>5. Kanban & Execução</h5>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>As tarefas caem num quadro visual (Kanban) divididas por status:</p>
+                            <ul>
+                                <li><span class="badge bg-secondary">A Fazer</span> Backlog priorizado.</li>
+                                <li><span class="badge bg-primary">Em Andamento</span> Foco da semana.</li>
+                                <li><span class="badge bg-warning text-dark">Revisão</span> Aguardando aprovação.</li>
+                                <li><span class="badge bg-success">Concluído</span> Entrega de valor.</li>
+                            </ul>
+                            <p><strong>Dica de Uso:</strong> Use o filtro por "Responsável" na War Room para ver apenas o que é seu.</p>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="alert alert-info">
+                                <h6>Modelo Mental de Guerra</h6>
+                                <p class="small mb-0">Chamamos de "War Room" porque é onde a estratégia encontra o campo de batalha. Não é lugar de brainstorming, é lugar de acompanhar o avanço das tropas (tarefas) rumo à vitória (KRs).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

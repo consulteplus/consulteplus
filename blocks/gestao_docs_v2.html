@@ -1,0 +1,174 @@
+<!-- Módulo de Negócio & Estratégia (Gestão Deep Dive) -->
+<div class="card mb-4 doc-section" id="gestao-deep-dive">
+    <div class="card-header bg-light text-dark" style="cursor: pointer;">
+        <h4 class="mb-0 d-flex justify-content-between align-items-center"><span><i
+                    class="bi bi-briefcase me-2"></i>Gestão Estratégica & Inteligência (War Room)</span><i
+                class="bi bi-chevron-down fs-6"></i></h4>
+    </div>
+    <div id="collapse-gestao-deep-dive" class="collapse">
+        <div class="card-body">
+            <p class="lead">O módulo de Gestão Estratégica transforma diagnósticos em planos de ação. Ele é o "cérebro"
+                da clínica, utilizando IA para sugerir projetos e a metodologia OKR para garantir que a estratégia saia
+                do papel.</p>
+
+            <hr>
+
+            <h5 class="text-primary mt-4"><i class="bi bi-diagram-3 me-2"></i>1. Visão Macro (O Fluxo de Valor)</h5>
+            <p>O sistema funciona em cascata. Nada é criado por acaso; tudo nasce de um diagnóstico.</p>
+            <div class="mermaid">
+                graph TD
+                A[1. Diagnóstico] -->|Identifica Gaps| B[2. Projetos (War Room)]
+                B -->|Define Metas| C[3. OKRs (Objetivos + KRs)]
+                C -->|Operacionaliza| D[4. Tarefas (Kanban)]
+                D -->|Execução| E(Resultado)
+                E -->|Feedback| A
+
+                style B fill:#e1f5fe,stroke:#01579b,stroke-width:2px
+                style C fill:#fff9c4,stroke:#fbc02d,stroke-width:2px
+            </div>
+
+            <h5 class="text-primary mt-5"><i class="bi bi-ui-checks me-2"></i>2. Diagnóstico (Os 6 Pilares)</h5>
+            <p>Ao iniciar, o gestor responde a um questionário que avalia a saúde da clínica em 6 dimensões. O sistema
+                calcula um Score (0-100) para cada pilar.</p>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="card h-100 border-primary">
+                        <div class="card-body">
+                            <h6 class="card-title text-primary fw-bold">1. Atração (CAC)</h6>
+                            <p class="small mb-0">Marketing e Canais. <br><em>"Quantos leads chegam?"</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-success">
+                        <div class="card-body">
+                            <h6 class="card-title text-success fw-bold">2. Conversão</h6>
+                            <p class="small mb-0">Comercial e Vendas. <br><em>"Quantos viram pacientes?"</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-info">
+                        <div class="card-body">
+                            <h6 class="card-title text-info fw-bold">3. Produtos (LTV)</h6>
+                            <p class="small mb-0">Serviços e Recorrência. <br><em>"Quanto gastam?"</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-warning">
+                        <div class="card-body">
+                            <h6 class="card-title text-warning fw-bold">4. Jornada</h6>
+                            <p class="small mb-0">NPS e Experiência. <br><em>"Eles saem felizes?"</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-danger">
+                        <div class="card-body">
+                            <h6 class="card-title text-danger fw-bold">5. Financeiro</h6>
+                            <p class="small mb-0">Margem e Caixa. <br><em>"A conta fecha?"</em></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-secondary">
+                        <div class="card-body">
+                            <h6 class="card-title text-secondary fw-bold">6. Gestão</h6>
+                            <p class="small mb-0">Liderança e Cultura. <br><em>"O time joga junto?"</em></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="text-primary mt-5"><i class="bi bi-robot me-2"></i>3. Inteligência Artificial (N8N)</h5>
+            <p>O <strong>Proxy de IA</strong> (`proxy_n8n.php`) conecta o PHP ao N8N, que por sua vez orquestra o
+                GPT-4o. O fluxo é totalmente seguro e assíncrono.</p>
+            <div class="mermaid">
+                sequenceDiagram
+                participant User as Usuário
+                participant PHP as Backend PHP
+                participant N8N as Workflow N8N
+
+                User->>PHP: Solicita "Gerar Projeto com IA"
+                PHP->>N8N: POST (Pilar Fraco + Contexto)
+                N8N->>N8N: Consulta OpenAI (GPT-4o)
+                N8N->>N8N: Formata JSON Estruturado
+                N8N-->>PHP: Retorna { projeto, explicacao, okrs[] }
+                PHP-->>User: Renderiza Preview na Tela
+            </div>
+
+            <div class="alert alert-info mt-3">
+                <strong>JSON Estruturado:</strong> A IA não retorna texto livre. Ela retorna um objeto JSON contendo
+                Objetivos, Resultados Chave e Tarefas, que o PHP insere nas tabelas correspondentes automaticamente.
+            </div>
+
+            <h5 class="text-primary mt-5"><i class="bi bi-database me-2"></i>4. Modelagem de Dados (Schema)</h5>
+            <p>A estrutura de banco de dados suporta a hierarquia complexa de OKRs e gestão de tarefas.</p>
+
+            <div class="mermaid">
+                erDiagram
+                GESTAO_PROJETOS ||--|{ GESTAO_OBJETIVOS : possui
+                GESTAO_OBJETIVOS ||--|{ GESTAO_RESULTADOS_CHAVE : mede
+                GESTAO_OBJETIVOS ||--|{ GESTAO_TAREFAS : executa
+
+                GESTAO_PROJETOS {
+                int id PK
+                string nome "ex: Implantação CRM"
+                string pilar_foco "ex: Conversao"
+                text descricao_md "Markdown"
+                enum status "planejamento, ativo..."
+                }
+
+                GESTAO_OBJETIVOS {
+                int id PK
+                int projeto_id FK
+                string titulo "O que conquistar?"
+                date prazo
+                int progresso "0-100"
+                }
+
+                GESTAO_RESULTADOS_CHAVE {
+                int id PK
+                int objetivo_id FK
+                string titulo "Indicador X"
+                float meta_alvo
+                float atual
+                string unidade "%, R$, un"
+                }
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h6>Tabelas Principais:</h6>
+                    <ul class="small">
+                        <li><code>gestao_projetos</code>: A iniciativa macro (Pai de todos).</li>
+                        <li><code>gestao_objetivos</code>: O Sonho (Qualitativo). Vinculado ao Projeto.</li>
+                        <li><code>gestao_resultados_chave</code>: A Meta (Quantitativo). Vinculado ao Objetivo.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h6>Tabelas Operacionais:</h6>
+                    <ul class="small">
+                        <li><code>gestao_tarefas</code>: Cartão do Kanban.</li>
+                        <li><code>gestao_diagnostico</code>: Histórico de avaliações dos 6 pilares.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h5 class="text-primary mt-5"><i class="bi bi-kanban me-2"></i>5. Execução (Task Board)</h5>
+            <p>Para o dia a dia, utilizamos um quadro Kanban visual.</p>
+            <div class="code-block">
+                <pre>
+Status do Kanban:
+[ BACKLOG ] -> [ FAZER HOJE ] -> [ EM ANDAMENTO ] -> [ REVISÃO ] -> [ CONCLUÍDO ]</pre>
+            </div>
+            <p>Cada tarefa pode ter:</p>
+            <ul>
+                <li><strong>Responsável:</strong> Usuário do sistema (FK `usuario_id`).</li>
+                <li><strong>Prioridade:</strong> Baixa, Média, Alta (Cores visuais).</li>
+                <li><strong>Checklist:</strong> Sub-itens dentro do cartão.</li>
+            </ul>
+        </div>
+    </div>
+</div>

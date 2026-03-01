@@ -1,0 +1,428 @@
+/* Sidebar Mini Mode */
+@media (min-width: 768px) {
+
+    /* --- Sidebar Expanded Mode (Fixed Fix) --- */
+    body:not(.sidebar-mini) .sidebar {
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 100vh !important;
+        width: 240px !important;
+        z-index: 1000;
+        overflow-y: auto;
+        padding-top: 0.5rem;
+    }
+
+    /* Adjust Main Content for Expanded Sidebar */
+    body:not(.sidebar-mini) main {
+        margin-left: 240px !important;
+        /* Use margin-inline-start for better compatibility */
+        margin-inline-start: 240px !important;
+        /* Let flexbox handle the width calculation */
+        width: auto !important;
+        flex: 1 !important;
+        max-width: 100% !important;
+        padding-right: 20px;
+    }
+
+    /* Layout Adjustments - ACTIVE ONLY WHEN class 'sidebar-mini' is on BODY */
+    body.sidebar-mini .sidebar {
+        width: 80px !important;
+        flex: 0 0 80px !important;
+        max-width: 80px !important;
+        transition: width 0.3s;
+        /* Disable internal scroll, use page scroll */
+        overflow: visible !important;
+        z-index: 99999 !important;
+        /* Force on top */
+        padding-top: 0.5rem;
+        display: flex !important;
+        flex-direction: column !important;
+        /* Absolute position allows height to grow and popups to show */
+        position: fixed !important;
+        min-height: 100vh !important;
+        height: 100vh !important;
+        top: 0;
+        left: 0;
+        bottom: 0 !important;
+        /* Let it grow */
+        background-color: #0d6efd;
+        /* Ensure background is opaque blue */
+        scrollbar-width: thin;
+        /* Firefox thin scrollbar */
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    }
+
+    /* Remove scrollbar styling since we don't scroll inside element anymore */
+    body.sidebar-mini .sidebar::-webkit-scrollbar {
+        display: none;
+    }
+
+    body.sidebar-mini .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    body.sidebar-mini .sidebar::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    body.sidebar-mini .sidebar .position-sticky {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        width: 100%;
+        min-height: min-content;
+        /* Allow growth */
+    }
+
+    /* Main Content Adjustment - More Robust Selector */
+    body.sidebar-mini main {
+        margin-left: 80px !important;
+        margin-inline-start: 80px !important;
+        /* Handle LTR/RTL and overrides */
+        width: auto !important;
+        flex: 1 !important;
+        /* Fill remaining space */
+        max-width: 100% !important;
+        padding-right: 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Hide Text Labels */
+    body.sidebar-mini .sidebar .nav-link span {
+        display: none;
+    }
+
+    /* Reset UL padding to ensure perfect centering */
+    body.sidebar-mini .sidebar .nav {
+        padding-left: 0 !important;
+        margin-left: 0 !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* Force center items */
+    }
+
+    body.sidebar-mini .sidebar .nav-item {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Hide Chevron Icons */
+    body.sidebar-mini .sidebar .bi-chevron-down {
+        display: none;
+    }
+
+    /* Adjust Link Padding/Centering - ULTRA COMPACT FLEX */
+    body.sidebar-mini .sidebar .nav-link {
+        display: flex !important;
+        /* Use Flexbox for perfect centering */
+        justify-content: center !important;
+        align-items: center !important;
+        text-align: center;
+        padding: 8px 0 !important;
+        position: relative;
+        width: calc(100% - 16px) !important;
+        margin: 0 auto !important;
+        border-radius: 6px;
+    }
+
+    body.sidebar-mini .sidebar .nav-link i:first-child {
+        font-size: 1.4rem !important;
+        margin: 0 !important;
+        /* Remove all margins */
+    }
+
+    /* Sidebar Header */
+    body.sidebar-mini .sidebar .text-center,
+    body.sidebar-mini .sidebar .hide-on-mini {
+        display: none !important;
+    }
+
+    /* Toggle Button */
+    body.sidebar-mini .sidebar #sidebarToggle {
+        display: flex !important;
+        /* Also flex the toggle */
+        justify-content: center;
+        align-items: center;
+        position: static !important;
+        margin: 0 auto !important;
+        transform: none !important;
+        padding: 5px !important;
+        margin-bottom: 5px !important;
+        width: 30px;
+        height: 30px;
+    }
+
+    body.sidebar-mini .sidebar .d-flex.align-items-start {
+        justify-content: center !important;
+        margin-bottom: 0.5rem !important;
+        padding-top: 0.2rem;
+    }
+
+    /* User Profile Compact */
+    body.sidebar-mini .sidebar .bg-white.rounded {
+        background-color: #fff !important;
+        /* Restore white background */
+        padding: 10px 0 !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        margin-top: auto;
+        border-top: none;
+        margin-bottom: 10px;
+        width: 60px;
+        /* Center in 80px sidebar */
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 10px !important;
+    }
+
+    body.sidebar-mini .sidebar .bg-white .text-dark {
+        margin: 0 !important;
+    }
+
+    body.sidebar-mini .sidebar .bg-white .text-dark span {
+        display: none;
+    }
+
+    body.sidebar-mini .sidebar .bg-white .gap-3 {
+        display: flex !important;
+        flex-direction: column;
+        gap: 10px !important;
+        margin-left: 0 !important;
+        /* Reset margin */
+    }
+
+    /* Restore icon colors for white background */
+    body.sidebar-mini .sidebar .bg-white .text-dark i {
+        color: #212529 !important;
+        /* Dark color */
+        font-size: 1.5rem;
+        margin: 0 !important;
+    }
+
+    body.sidebar-mini .sidebar .bg-white a i {
+        font-size: 1.2rem;
+        /* Inherit original colors (primary, danger) or set specific */
+    }
+
+    body.sidebar-mini .sidebar .bg-white a.text-primary i {
+        color: #0d6efd !important;
+    }
+
+    body.sidebar-mini .sidebar .bg-white a.text-danger i {
+        color: #dc3545 !important;
+    }
+
+    /* --- HOVER EFFECTS (The Magic) --- */
+
+    /* When hovering a Nav Item */
+    body.sidebar-mini .sidebar .nav-item {
+        position: relative;
+    }
+
+    body.sidebar-mini .sidebar .nav-item:hover>.nav-link {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+    }
+
+    body.sidebar-mini .sidebar .nav-link.active {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+        border-radius: 6px;
+        margin: 0 8px;
+        width: auto;
+    }
+
+    /* Submenu - Attempt to float above scroll */
+    body.sidebar-mini .sidebar .collapse {
+        display: none;
+        position: absolute;
+        /* Relative to nav-item */
+        left: 70px;
+        top: 0;
+        width: 220px;
+        background-color: #343a40;
+        border-radius: 0 8px 8px 8px;
+        box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        z-index: 100000;
+        /* Super high */
+        clip-path: inset(-20px 0 -20px -20px);
+    }
+
+    /* Stronger Bridge Logic using Pseudo-element */
+    body.sidebar-mini .sidebar .collapse::before {
+        content: "";
+        position: absolute;
+        left: -20px;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        background: transparent;
+    }
+
+    /* Show Submenu on Hover */
+    body.sidebar-mini .sidebar .nav-item:hover>.collapse {
+        display: block !important;
+        height: auto !important;
+    }
+
+    /* Show Tooltip style label */
+    body.sidebar-mini .sidebar .nav-link span {
+        position: absolute;
+        left: 65px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: #343a40;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 4px;
+        white-space: nowrap;
+        display: none;
+        pointer-events: none;
+        z-index: 100001;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Override: Show span only on hover for items WITHOUT submenu */
+    body.sidebar-mini .sidebar .nav-item:hover>.nav-link:not([data-bs-toggle="collapse"]) span {
+        display: block;
+    }
+
+    /* Submenu Links Style */
+    body.sidebar-mini .sidebar .collapse .nav {
+        margin-left: 0 !important;
+        /* Remove indentation */
+        padding-left: 0 !important;
+    }
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link {
+    justify-content: flex-start !important;
+    /* Force Left Align */
+    width: 100% !important;
+    /* Full width of container */
+    margin: 0 !important;
+    /* Remove centering auto margin */
+    padding: 8px 15px !important;
+    border-radius: 4px !important;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link i {
+    font-size: 1rem !important;
+    display: inline-block;
+    margin-right: 10px !important;
+    margin-left: 0 !important;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link span {
+    display: inline;
+    position: static;
+    background: none;
+    padding: 0;
+    box-shadow: none;
+}
+}
+
+/* --- MOBILE FIXES (Viewport < 768px) --- */
+@media (max-width: 767.98px) {
+
+    /* RESET styling leaks from sidebar-mini if any */
+    body.sidebar-mini .sidebar {
+        width: 260px !important;
+        max-width: 260px !important;
+        background-color: #0d6efd !important;
+        /* Restore blue if it was white */
+    }
+
+    /* Restore text visibility if hidden by mini mode */
+    body.sidebar-mini .sidebar .nav-link span,
+    body.sidebar-mini .sidebar .text-center,
+    body.sidebar-mini .sidebar .hide-on-mini {
+        display: inline-block !important;
+    }
+
+    /* Restore header display */
+    body.sidebar-mini .sidebar .text-center {
+        display: block !important;
+    }
+
+    /* Main container fix: no margin */
+    body main {
+        margin-left: 0 !important;
+        width: 100% !important;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    /* Force Sidebar behavior: hidden by default, fixed full overlay when shown */
+    .sidebar {
+        position: fixed !important;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1060 !important;
+        /* Higher than Bootstrap navbar (1030) and modal backdrop (1050) */
+        width: 260px !important;
+        /* Comfortable touch width */
+        height: 100vh !important;
+        background-color: #0d6efd;
+        /* Primary Color */
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.2);
+
+        transition: transform 0.3s ease-in-out;
+        transform: translateX(-100%);
+        /* Hidden by default (Off-canvas logic) */
+
+        /* Ensure content is laid out correctly inside */
+        display: flex !important;
+        flex-direction: column;
+        padding-top: 20px;
+        overflow-y: auto;
+    }
+
+    /* Bootstrap 5 'show' class or similar toggle */
+    .sidebar.show {
+        transform: translateX(0) !important;
+        /* Slide in */
+    }
+
+    /* If using 'collapse' class which behaves differently, ensure 'show' overrides */
+    .sidebar.collapse.show {
+        display: flex !important;
+        /* Override standard collapse display:block if needed */
+        visibility: visible !important;
+    }
+
+    /* Overlay/Backdrop when menu is open */
+    .sidebar.show::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 260px;
+        /* Starts after sidebar */
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1059;
+    }
+
+    /* Fix header inside sidebar */
+    .sidebar .d-flex.align-items-start {
+        justify-content: space-between;
+        padding: 0 15px;
+    }
+
+    /* Ensure toggle button inside sidebar is visible if needed to close */
+    #sidebarToggle {
+        display: block !important;
+        /* Make sure close button is visible on mobile */
+    }
+}

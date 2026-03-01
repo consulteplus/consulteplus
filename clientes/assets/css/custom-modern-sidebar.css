@@ -1,0 +1,645 @@
+/* Modern White Sidebar */
+
+/* --- Sidebar Container --- */
+/* --- Sidebar Container Structure --- */
+body:not(.sidebar-mini) .sidebar {
+    width: 240px !important;
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    padding-top: 0.5rem;
+}
+
+body:not(.sidebar-mini) .sidebar .position-sticky {
+    position: relative !important;
+    /* For absolute positioning of toggle button */
+}
+
+body:not(.sidebar-mini) main.col-md-9,
+body:not(.sidebar-mini) main.col-lg-10 {
+    margin-left: 240px !important;
+    width: calc(100% - 240px) !important;
+    max-width: calc(100% - 240px) !important;
+    flex: 1 !important;
+    transition: all 0.3s ease;
+}
+
+/* Style for Both States */
+body:not(.sidebar-mini) .sidebar,
+body.sidebar-mini .sidebar {
+    background-color: #ffffff !important;
+    /* Branco */
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+    /* Separador sutil */
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02);
+    /* Sombra suave */
+    transition: width 0.3s;
+}
+
+/* --- Mini Sidebar Structure --- */
+body.sidebar-mini .sidebar {
+    width: 80px !important;
+    flex: 0 0 80px !important;
+    max-width: 80px !important;
+    position: fixed !important;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99999 !important;
+    padding-top: 0.5rem;
+    overflow: visible !important;
+    /* Allow popups */
+}
+
+body.sidebar-mini main.col-md-9,
+body.sidebar-mini main.col-lg-10 {
+    margin-left: 80px !important;
+    width: calc(100% - 80px) !important;
+    max-width: calc(100% - 80px) !important;
+    transition: all 0.3s ease;
+}
+
+/* Hide Header Text in Mini */
+body.sidebar-mini .sidebar .text-center {
+    display: none !important;
+}
+
+/* Hide Logo in Mini */
+body.sidebar-mini .sidebar .mb-4.px-3 {
+    display: none !important;
+}
+
+/* Hide separator in mini mode (it's above the menu) */
+body.sidebar-mini .sidebar hr {
+    display: none !important;
+}
+
+/* Add spacing at top of menu in mini mode */
+body.sidebar-mini .sidebar .nav.flex-column {
+    padding-top: 20px !important;
+}
+
+/* Center Toggle Button in Mini */
+body.sidebar-mini .sidebar .d-flex.align-items-start {
+    justify-content: center !important;
+    margin-bottom: 20px !important;
+}
+
+body.sidebar-mini .sidebar #sidebarToggle {
+    position: static !important;
+    margin: 0 auto !important;
+}
+
+/* Collapse User Profile in Mini */
+body.sidebar-mini .sidebar .nav-item .bg-white {
+    padding: 12px 0 !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+}
+
+/* Hide only the Name text in mini mode */
+body.sidebar-mini .sidebar .nav-item .bg-white .text-dark span {
+    display: none !important;
+}
+
+/* Hide vertical separator in mini mode */
+body.sidebar-mini .sidebar .nav-item .bg-white .vr {
+    display: none !important;
+}
+
+/* Stack icons vertically in mini mode */
+body.sidebar-mini .sidebar .nav-item .bg-white .d-flex.gap-3 {
+    flex-direction: column !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    align-items: center !important;
+}
+
+/* Adjust icon sizes in mini mode */
+body.sidebar-mini .sidebar .nav-item .bg-white a i {
+    font-size: 1.3rem !important;
+}
+
+/* Ensure Avatar is centered */
+body.sidebar-mini .sidebar .nav-item .bg-white .text-dark i {
+    font-size: 1.5rem;
+    margin: 0 !important;
+}
+
+/* --- Brand / Header --- */
+.sidebar .text-center h4 {
+    color: #1a1a1a !important;
+    /* Texto escuro */
+    font-weight: 800 !important;
+    letter-spacing: -0.5px;
+}
+
+.sidebar .text-center small {
+    color: #6c757d !important;
+    /* Cinza */
+}
+
+/* --- Navigation Links --- */
+.sidebar .nav-link {
+    color: #64748b !important;
+    /* Azul acinzentado */
+    font-weight: 500;
+    margin: 4px 16px;
+    border-radius: 8px;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .nav-link i {
+    color: #94a3b8;
+    /* Ícone inativo */
+    margin-right: 12px;
+    font-size: 1.1rem;
+    transition: all 0.2s ease;
+}
+
+/* Hover State */
+.sidebar .nav-link:hover {
+    background-color: #f8fafc;
+    /* Content gray */
+    color: #0f172a !important;
+}
+
+.sidebar .nav-link:hover i {
+    color: #1D2F5F;
+    /* Azul no hover */
+}
+
+/* Active State */
+.sidebar .nav-link.active {
+    background-color: #f1f5f9 !important;
+    /* Light gray instead of blue tint for better contrast */
+    color: #1D2F5F !important;
+    /* New Brand Color */
+    font-weight: 700;
+    position: relative;
+}
+
+.sidebar .nav-link.active i {
+    color: #1D2F5F !important;
+}
+
+/* Blue Line Indicator (Active) */
+.sidebar .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 4px;
+    background-color: #1D2F5F;
+    /* New Brand Color */
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* --- Toggle Button --- */
+#sidebarToggle {
+    color: #64748b !important;
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#sidebarToggle:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#sidebarToggle i {
+    font-size: 1.2rem !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+}
+
+/* Adjust toggle position in mini mode */
+body.sidebar-mini #sidebarToggle {
+    right: 0 !important;
+}
+
+/* --- User Profile (Bottom) --- */
+.sidebar .nav-item .bg-white {
+    background-color: #f8fafc !important;
+    /* Diferenciar do fundo branco */
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar .nav-item .bg-white .text-dark {
+    color: #334155 !important;
+}
+
+/* --- Mini Sidebar Adjustments --- */
+body.sidebar-mini .sidebar .nav-link {
+    margin: 2px auto !important;
+    /* Reduzido de 4px para 2px */
+    /* Centralizado */
+    justify-content: center !important;
+    padding: 10px 0 !important;
+    /* Reduzido de 12px para 10px */
+    width: 48px !important;
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+body.sidebar-mini .sidebar .nav-link i {
+    margin-right: 0 !important;
+    font-size: 1.4rem;
+    display: block !important;
+    visibility: visible !important;
+}
+
+/* Mostrar span que contém ícone, mas esconder texto dentro dele */
+body.sidebar-mini .sidebar .nav-link>span {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Esconder APENAS o texto dentro do span (não o ícone) */
+body.sidebar-mini .sidebar .nav-link>span {
+    font-size: 0 !important;
+    /* Esconde texto mas mantém ícone */
+}
+
+body.sidebar-mini .sidebar .nav-link>span i {
+    font-size: 1.4rem !important;
+    /* Restaura tamanho do ícone */
+}
+
+body.sidebar-mini .sidebar .nav-link.active::before {
+    display: none;
+    /* Remove linha lateral no mini */
+}
+
+/* Esconder chevrons de submenus no modo mini - TODAS as variações */
+body.sidebar-mini .sidebar .nav-link[data-bs-toggle="collapse"] .bi-chevron-down,
+body.sidebar-mini .sidebar .nav-link .bi-chevron-down,
+body.sidebar-mini .sidebar .bi-chevron-down {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Esconder submenus colapsados no modo mini */
+body.sidebar-mini .sidebar .collapse {
+    display: none !important;
+}
+
+/* Submenu Flyout no Modo Mini */
+body.sidebar-mini .sidebar .nav-item {
+    position: relative;
+}
+
+/* Esconder submenu por padrão */
+body.sidebar-mini .sidebar .collapse {
+    display: none;
+    position: absolute;
+    left: 80px;
+    /* Ajustado para 80px */
+    top: 0;
+    min-width: 240px;
+    max-width: 280px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+    z-index: 9999;
+    padding: 4px 0;
+}
+
+/* Criar "ponte" invisível entre ícone e submenu */
+body.sidebar-mini .sidebar .nav-item:hover>.collapse::before {
+    content: '';
+    position: absolute;
+    left: -80px;
+    /* Largura da sidebar mini */
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
+}
+
+/* Mostrar submenu ao hover no item pai */
+body.sidebar-mini .sidebar .nav-item:hover>.collapse {
+    display: block !important;
+}
+
+/* Manter submenu visível ao hover nele mesmo */
+body.sidebar-mini .sidebar .collapse:hover {
+    display: block !important;
+}
+
+/* Animação de entrada do flyout */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilo dos itens do submenu flyout */
+body.sidebar-mini .sidebar .collapse .nav-link {
+    padding: 8px 12px !important;
+    margin: 1px 6px !important;
+    border-radius: 4px;
+    color: #64748b !important;
+    font-size: 0.875rem !important;
+    font-weight: 500;
+    white-space: nowrap;
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-start !important;
+    /* Alinhar à esquerda */
+    gap: 10px;
+    width: calc(100% - 12px) !important;
+    position: relative !important;
+    text-align: left !important;
+}
+
+/* Mostrar ícones dos subitens no flyout */
+body.sidebar-mini .sidebar .collapse .nav-link i {
+    display: inline-block !important;
+    font-size: 1rem !important;
+    color: #94a3b8 !important;
+    margin-right: 0 !important;
+    width: 18px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link:hover i {
+    color: #1D2F5F !important;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link.active {
+    background-color: #eff6ff !important;
+    color: #1D2F5F !important;
+    font-weight: 600;
+}
+
+body.sidebar-mini .sidebar .collapse .nav-link.active i {
+    color: #1D2F5F !important;
+}
+
+/* Remover borda lateral no flyout */
+body.sidebar-mini .sidebar .collapse .nav.flex-column {
+    border-left: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}
+
+/* Hover submenu fix for mini sidebar */
+body.sidebar-mini .sidebar .nav-link:hover {
+    background-color: #eff6ff;
+}
+
+/* BOTÃO MOBILE MENU - REGRA GLOBAL */
+#mobileMenuBtn {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #1D2F5F !important;
+    font-size: 1.5rem !important;
+    padding: 0.5rem !important;
+    border: none !important;
+    background: transparent !important;
+    cursor: pointer !important;
+}
+
+/* Mobile: Esconder sidebar, mostrar apenas conteúdo */
+@media (max-width: 767px) {
+
+    /* Esconder sidebar completamente */
+    #sidebarMenu,
+    nav.sidebar,
+    .col-md-3.sidebar,
+    .col-lg-2.sidebar,
+    .sidebar {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        min-width: 0 !important;
+        max-width: 0 !important;
+        flex: 0 0 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    /* Main content ocupa tela toda */
+    main.col-md-9,
+    main.col-lg-10,
+    main {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 100% !important;
+        flex: 0 0 100% !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    /* Container e row sem restrições */
+    .container-fluid {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .container-fluid>.row {
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Body e html sem overflow */
+    body,
+    html {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Todos os elementos filhos do main respeitam largura */
+    main * {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Cards e containers internos */
+    .card,
+    .container,
+    .row {
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* ============================================
+   PADRONIZAÇÃO VISUAL DO MENU ADMIN
+   ============================================ */
+
+/* Garantir que sidebar sempre seja branca (sobrescreve style.css) */
+.sidebar {
+    background-color: #ffffff !important;
+    border-right: 1px solid rgba(0, 0, 0, 0.05) !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.02) !important;
+}
+
+/* Links do menu admin com cores escuras */
+.sidebar .nav-link {
+    color: #64748b !important;
+    font-weight: 500;
+}
+
+.sidebar .nav-link i {
+    color: #94a3b8 !important;
+}
+
+/* Hover dos links */
+.sidebar .nav-link:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+    transform: none !important;
+    /* Remove translateX do style.css */
+}
+
+.sidebar .nav-link:hover i {
+    color: #1D2F5F !important;
+}
+
+/* Link ativo */
+.sidebar .nav-link.active {
+    background-color: #f1f5f9 !important;
+    color: #1D2F5F !important;
+    font-weight: 700;
+    position: relative;
+}
+
+.sidebar .nav-link.active i {
+    color: #1D2F5F !important;
+}
+
+/* Linha indicadora azul no link ativo (apenas se não tiver submenu) */
+.sidebar .nav-link.active:not([data-bs-toggle="collapse"])::before {
+    content: '';
+    position: absolute;
+    left: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 24px;
+    width: 4px;
+    background-color: #1D2F5F;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+/* Cabeçalhos de seção (ex: "ADMINISTRAÇÃO") */
+.sidebar .nav-item small.text-uppercase {
+    color: #6c757d !important;
+    /* Cinza escuro ao invés de branco */
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 12px 15px;
+    display: block;
+}
+
+/* Ícone do cabeçalho de seção */
+.sidebar .nav-item small.text-uppercase i {
+    color: #6c757d !important;
+}
+
+/* Submenus colapsáveis - chevron */
+.sidebar .nav-link[data-bs-toggle="collapse"] .bi-chevron-down {
+    color: #94a3b8 !important;
+}
+
+.sidebar .nav-link[data-bs-toggle="collapse"]:hover .bi-chevron-down {
+    color: #1D2F5F !important;
+}
+
+/* Subitens do submenu */
+.sidebar .collapse .nav-link {
+    color: #64748b !important;
+    font-size: 0.9rem;
+    padding: 8px 15px;
+}
+
+.sidebar .collapse .nav-link:hover {
+    background-color: #f8fafc !important;
+    color: #0f172a !important;
+}
+
+.sidebar .collapse .nav-link.active {
+    color: #1D2F5F !important;
+    font-weight: 600;
+    background-color: #f1f5f9 !important;
+}
+
+/* Remover classes text-white-50 e text-white inline (via CSS) */
+.sidebar .text-white-50,
+.sidebar .text-white {
+    color: #64748b !important;
+}
+
+.sidebar .nav-link.active.text-white,
+.sidebar .collapse .nav-link.active.text-white {
+    color: #1D2F5F !important;
+}
+
+/* Borda lateral dos subitens */
+.sidebar .collapse .nav.flex-column {
+    border-left-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Separador horizontal */
+.sidebar hr {
+    border-color: rgba(0, 0, 0, 0.1) !important;
+    opacity: 1 !important;
+}
+
+/* Perfil do usuário no footer */
+.sidebar .nav-item .bg-white {
+    background-color: #f8fafc !important;
+    border: 1px solid #e2e8f0 !important;
+}
+
+.sidebar .nav-item .bg-white .text-dark {
+    color: #334155 !important;
+}
