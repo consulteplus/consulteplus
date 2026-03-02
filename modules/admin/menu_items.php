@@ -319,6 +319,42 @@
     </li>
     -->
 
+    <!-- Group: Produtos (Produtos, Diagnósticos, Ferramentas) -->
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-between <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false) ? '' : 'collapsed'; ?>"
+            href="#submenuProdutos" data-bs-toggle="collapse" role="button"
+            aria-expanded="<?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false) ? 'true' : 'false'; ?>"
+            aria-controls="submenuProdutos">
+            <span>
+                <i class="bi bi-box-seam me-2"></i> Produtos
+            </span>
+            <i class="bi bi-chevron-down" style="font-size: 0.8em;"></i>
+        </a>
+        <div class="collapse <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false) ? 'show' : ''; ?>"
+            id="submenuProdutos">
+            <ul class="nav flex-column ms-3 border-start border-secondary border-opacity-25 ps-2">
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/produtos">
+                        <i class="bi bi-box-seam me-2"></i> Produtos (Listagem)
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/diagnosticos">
+                        <i class="bi bi-list-check me-2"></i> Diagnósticos
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/ferramentas">
+                        <i class="bi bi-tools me-2"></i> Ferramentas
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
     <!-- Sistema (Empresas + Usuários) -->
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center justify-content-between <?php echo (strpos($_SERVER['REQUEST_URI'], '/empresas') !== false || strpos($_SERVER['REQUEST_URI'], '/usuarios') !== false) ? '' : 'collapsed'; ?>"
@@ -333,14 +369,6 @@
         <div class="collapse <?php echo (strpos($_SERVER['REQUEST_URI'], '/empresas') !== false || strpos($_SERVER['REQUEST_URI'], '/usuarios') !== false) ? 'show' : ''; ?>"
             id="submenuSistema">
             <ul class="nav flex-column ms-3 border-start border-secondary border-opacity-25 ps-2">
-                <!--
-                <li class="nav-item my-1">
-                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/empresas') !== false ? 'active text-white' : 'text-white-50'; ?>"
-                        href="<?php echo BASE_URL; ?>admin/empresas">
-                        <i class="bi bi-buildings me-2"></i> Empresas
-                    </a>
-                </li>
-                -->
                 <li class="nav-item my-1">
                     <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/usuarios') !== false ? 'active text-white' : 'text-white-50'; ?>"
                         href="<?php echo BASE_URL; ?>admin/usuarios">
@@ -355,6 +383,15 @@
                 </li>
             </ul>
         </div>
+    </li>
+
+    <!-- Financeiro -->
+    <li class="nav-item">
+        <a href="<?php echo BASE_URL; ?>admin/financeiro"
+            class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/financeiro') !== false ? 'active' : ''; ?>">
+            <i class="bi bi-wallet2"></i>
+            <span>Financeiro</span>
+        </a>
     </li>
 
     <!--
