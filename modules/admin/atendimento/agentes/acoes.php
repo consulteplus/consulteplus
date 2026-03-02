@@ -93,6 +93,36 @@ try {
         ApiResponse::success($resultado);
     }
 
+    // POST: Testar Simulação (Webhook Real)
+    if ($acao === 'testar_simulacao' && $method === 'POST') {
+        try {
+            // Enable error logging to file
+            ini_set('log_errors', 1);
+            ini_set('error_log', __DIR__ . '/debug_simulador.log');
+
+            $input = file_get_contents('php://input');
+            error_log("Input received: " . $input);
+
+            $data = json_decode($input, true);
+
+            $mensagem = $data['mensagem'] ?? '';
+            $numeroTeste = $data['numero'] ?? '558699999999';
+
+            if (empty($mensagem)) {
+                ApiResponse::error('Mensagem é obrigatória', 400);
+            }
+
+            // Envia para o n8n simulando WhatsApp
+            $resultado = $service->testarSimulacao($mensagem, $numeroTeste);
+            error_log("Result: " . print_r($resultado, true));
+
+            ApiResponse::success($resultado);
+        } catch (Throwable $t) {
+            error_log("Fatal Error in testar_simulacao: " . $t->getMessage() . "\n" . $t->getTraceAsString());
+            ApiResponse::error("Erro interno: " . $t->getMessage(), 500);
+        }
+    }
+
     // GET: Histórico
     if ($acao === 'historico' && $method === 'GET') {
         $agenteId = (int) ($_GET['agente_id'] ?? 0);

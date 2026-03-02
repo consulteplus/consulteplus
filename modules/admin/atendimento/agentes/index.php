@@ -186,7 +186,13 @@ checkPermission(['admin', 'superadmin']);
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Prompt do Sistema</label>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="form-label mb-0">Prompt do Sistema</label>
+                            <button type="button" class="btn btn-sm btn-outline-primary py-0"
+                                onclick="abrirEditorAvancado()">
+                                <i class="bi bi-arrows-fullscreen me-1"></i>Editor Avançado
+                            </button>
+                        </div>
                         <textarea class="form-control font-monospace" name="prompt_sistema" rows="4"
                             required></textarea>
                         <small class="text-muted">Instruções que definem o comportamento do agente</small>
@@ -311,6 +317,9 @@ checkPermission(['admin', 'superadmin']);
                             <button class="btn btn-outline-secondary" onclick="editarAgente(${agente.id})" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </button>
+                            <a href="${BASE_URL}admin/atendimento/agentes/editor/${agente.id}" class="btn btn-info text-white" title="Editor de Prompt">
+                                <i class="bi bi-file-text me-1"></i> Prompt
+                            </a>
                             <button class="btn btn-outline-primary" onclick="testarAgente(${agente.id})" title="Testar">
                                 <i class="bi bi-play-circle"></i>
                             </button>
@@ -458,6 +467,14 @@ checkPermission(['admin', 'superadmin']);
                 </td>
             </tr>
         `;
+    }
+    function abrirEditorAvancado() {
+        const id = document.getElementById('agenteId').value;
+        if (!id) {
+            alert('Salve o agente primeiro antes de usar o editor avançado.');
+            return;
+        }
+        window.location.href = BASE_URL + 'admin/atendimento/agentes/editor/' + id;
     }
 </script>
 

@@ -111,7 +111,59 @@
         </div>
     </li>
 
-    <!-- Gestão de Produtos (Mentorias, Cursos, etc) -->
+    <!-- Gestão Empresarial (New) -->
+    <li class="nav-item">
+        <a class="nav-link d-flex align-items-center justify-content-between <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao') !== false ? '' : 'collapsed'; ?>"
+            href="#submenuGestao" data-bs-toggle="collapse" role="button"
+            aria-expanded="<?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao') !== false ? 'true' : 'false'; ?>"
+            aria-controls="submenuGestao">
+            <span>
+                <i class="bi bi-briefcase me-2"></i> Gestão
+            </span>
+            <i class="bi bi-chevron-down" style="font-size: 0.8em;"></i>
+        </a>
+        <div class="collapse <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao') !== false ? 'show' : ''; ?>"
+            id="submenuGestao">
+            <ul class="nav flex-column ms-3 border-start border-secondary border-opacity-25 ps-2">
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao/index') !== false || rtrim($_SERVER['REQUEST_URI'], '/') == rtrim(BASE_URL . 'admin/execucao-gestao', '/') ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-gestao">
+                        <i class="bi bi-grid me-2"></i> Visão Geral
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao/tarefas') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-gestao/tarefas">
+                        <i class="bi bi-kanban me-2"></i> Tarefas
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao/planejamento') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-gestao/planejamento">
+                        <i class="bi bi-bullseye me-2"></i> Planejamento
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao/projetos') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-gestao/projetos">
+                        <i class="bi bi-folder me-2"></i> Projetos
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-gestao/diagnostico') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-gestao/diagnostico">
+                        <i class="bi bi-list-check me-2"></i> Diagnósticos
+                    </a>
+                </li>
+                <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/execucao-ferramentas') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/execucao-ferramentas">
+                        <i class="bi bi-tools me-2"></i> Ferramentas
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
     <li class="nav-item">
         <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false ? 'active' : ''; ?>"
             href="<?php echo BASE_URL; ?>admin/produtos">
@@ -241,7 +293,8 @@
         </div>
     </li>
 
-    <!-- Group: Produtos (Produtos, Diagnósticos, Ferramentas) -->
+    <!-- Group: Produtos (HIDDEN) -->
+    <!--
     <li class="nav-item">
         <a class="nav-link d-flex align-items-center justify-content-between <?php echo (strpos($_SERVER['REQUEST_URI'], '/admin/produtos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false || strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false) ? '' : 'collapsed'; ?>"
             href="#submenuProdutos" data-bs-toggle="collapse" role="button"
@@ -261,21 +314,10 @@
                         <i class="bi bi-box-seam me-2"></i> Produtos (Listagem)
                     </a>
                 </li>
-                <li class="nav-item my-1">
-                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/diagnosticos') !== false ? 'active text-white' : 'text-white-50'; ?>"
-                        href="<?php echo BASE_URL; ?>admin/diagnosticos">
-                        <i class="bi bi-list-check me-2"></i> Diagnósticos
-                    </a>
-                </li>
-                <li class="nav-item my-1">
-                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/ferramentas') !== false ? 'active text-white' : 'text-white-50'; ?>"
-                        href="<?php echo BASE_URL; ?>admin/ferramentas">
-                        <i class="bi bi-tools me-2"></i> Ferramentas
-                    </a>
-                </li>
             </ul>
         </div>
     </li>
+    -->
 
     <!-- Sistema (Empresas + Usuários) -->
     <li class="nav-item">
@@ -291,12 +333,14 @@
         <div class="collapse <?php echo (strpos($_SERVER['REQUEST_URI'], '/empresas') !== false || strpos($_SERVER['REQUEST_URI'], '/usuarios') !== false) ? 'show' : ''; ?>"
             id="submenuSistema">
             <ul class="nav flex-column ms-3 border-start border-secondary border-opacity-25 ps-2">
+                <!--
                 <li class="nav-item my-1">
                     <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/empresas') !== false ? 'active text-white' : 'text-white-50'; ?>"
                         href="<?php echo BASE_URL; ?>admin/empresas">
                         <i class="bi bi-buildings me-2"></i> Empresas
                     </a>
                 </li>
+                -->
                 <li class="nav-item my-1">
                     <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/usuarios') !== false ? 'active text-white' : 'text-white-50'; ?>"
                         href="<?php echo BASE_URL; ?>admin/usuarios">
@@ -313,6 +357,7 @@
         </div>
     </li>
 
+    <!--
     <li class="nav-item">
         <a href="<?php echo BASE_URL; ?>admin/financeiro"
             class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/financeiro') !== false ? 'active' : ''; ?>">
@@ -320,5 +365,6 @@
             <span>Financeiro</span>
         </a>
     </li>
+    -->
 
 <?php endif; ?>
