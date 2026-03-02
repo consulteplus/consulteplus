@@ -63,7 +63,71 @@ define('ASAAS_API_KEY', env('ASAAS_API_KEY', ''));
 // API Externa (Webhooks) — via variáveis de ambiente
 define('CRM_API_KEY', env('CRM_API_KEY', ''));
 
+// ============================================================
+// Controle de Módulos por Empresa
+// ============================================================
 
+/**
+ * Módulos sempre ativos — não precisam de registro no banco.
+ */
+define('MODULES_ALWAYS_ON', ['dashboard', 'perfil', 'configuracoes', 'financeiro']);
+
+/**
+ * Verifica se um módulo está habilitado para a empresa logada.
+ * Usa cache em $_SESSION para evitar consultas repetidas por página.
+ *
+ * @param string $modulo   Ex: 'gestao', 'ferramentas', 'produtos'
+ * @param int    $company_id  ID da empresa (usa sessão se omitido)
+ * @return bool
+ */
+function isModuleEnabled(string $modulo, int $company_id = 0): bool
+{
+    // Módulos fixos: sempre ativos
+    if (in_array($modulo, MODULES_ALWAYS_ON)) {
+        return true;
+    }
+
+    // Usar company_id da sessão se não informado
+    if ($company_id === 0) {
+        $company_id = (int) ($_SESSION['company_id'] ?? 0);
+    }
+
+    if ($company_id === 0) {
+        return false;
+    }
+
+    // Cache na sessão para evitar N queries por página
+    $cacheKey = 'modules_' . $company_id;
+    if (!isset($_SESSION[$cacheKey])) {
+        global $conn;
+        if (!isset($conn)) {
+            return true; // fallback: permite acesso se DB não disponível
+        }
+        $stmt = $conn->prepare(
+            "SELECT modulo, ativo FROM company_modules WHERE company_id = ?"
+        );
+        $stmt->bind_param("i", $company_id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        $cache = [];
+        while ($row = $res->fetch_assoc()) {
+            $cache[$row['modulo']] = (bool) $row['ativo'];
+        }
+        $_SESSION[$cacheKey] = $cache;
+    }
+
+    // Se não tem registro, considera habilitado (novo cliente = tudo ativo por padrão)
+    return $_SESSION[$cacheKey][$modulo] ?? true;
+}
+
+/**
+ * Invalida o cache de módulos da sessão (chamar após salvar módulos).
+ */
+function clearModulesCache(int $company_id): void
+{
+    unset($_SESSION['modules_' . $company_id]);
+}
 
 
 // Funções auxiliares

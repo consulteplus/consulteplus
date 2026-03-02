@@ -28,7 +28,7 @@ $showGestao = strpos($uri, '/gestao/') !== false;
 
     <?php if ($_SESSION['tipo'] !== 'superadmin'): ?>
 
-        <!-- Dashboard -->
+        <!-- Dashboard (sempre ativo) -->
         <?php if (!isset($_SESSION['tipo']) || $_SESSION['tipo'] !== 'superadmin'): ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/dashboard') !== false ? 'active' : ''; ?>"
@@ -38,11 +38,8 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
-        <!-- Financeiro removido do menu (acesso via Perfil) -->
-
-
-        <!-- Diagnóstico (Wizard) -->
-        <?php if (hasPermission(['admin', 'cliente'])): ?>
+        <!-- Diagnóstico -->
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/diagnostico') !== false ? 'active' : ''; ?>"
                     href="<?php echo BASE_URL; ?>gestao/diagnostico">
@@ -52,7 +49,7 @@ $showGestao = strpos($uri, '/gestao/') !== false;
         <?php endif; ?>
 
         <!-- Produtos (Visualização Aluno) -->
-        <?php if (hasPermission(['cliente'])): ?>
+        <?php if (hasPermission(['cliente']) && isModuleEnabled('produtos')): ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false ? 'active' : ''; ?>"
                     href="<?php echo BASE_URL; ?>produtos">
@@ -63,7 +60,7 @@ $showGestao = strpos($uri, '/gestao/') !== false;
         <?php endif; ?>
 
         <!-- Gestão Diária (Projetos/Tarefas/OKRs) -->
-        <?php if (hasPermission(['admin', 'cliente'])): ?>
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
             <li class="nav-item">
                 <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/projetos') !== false ? 'active' : ''; ?>"
                     href="<?php echo BASE_URL; ?>gestao/projetos">
@@ -84,8 +81,16 @@ $showGestao = strpos($uri, '/gestao/') !== false;
                     <i class="bi bi-bullseye"></i> <span>OKRs</span>
                 </a>
             </li>
+        <?php endif; ?>
 
-            <!-- Ferramentas removido do menu (acesso via Produtos) -->
+        <!-- Ferramentas -->
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('ferramentas')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false ? 'active' : ''; ?>"
+                    href="<?php echo BASE_URL; ?>ferramentas">
+                    <i class="bi bi-tools"></i> <span>Ferramentas</span>
+                </a>
+            </li>
         <?php endif; ?>
 
     <?php endif; ?>

@@ -22,6 +22,11 @@ try {
     echo "<div class='alert alert-danger'>Auth Error: " . $e->getMessage() . "</div>";
 }
 
+if (!isModuleEnabled('ferramentas')) {
+    redirect('dashboard?modulo_bloqueado=ferramentas');
+    exit;
+}
+
 echo "<div class='container-xxl flex-grow-1 container-p-y'>";
 echo "    <h4 class='fw-bold py-3 mb-4'>";
 echo "        <i class='bi bi-tools me-2'></i>Ferramentas Estratégicas";

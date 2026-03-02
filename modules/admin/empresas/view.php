@@ -91,6 +91,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
             $error = "Erro ao remover: " . $conn->error;
         }
     }
+
+    // SALVAR MÓDULOS
+    elseif ($_POST['action'] === 'salvar_modulos') {
+        $modulosConfiguravei = ['gestao', 'ferramentas', 'produtos', 'loja', 'documentacao', 'onboarding', 'minhas-notificacoes'];
+        foreach ($modulosConfiguravei as $modulo) {
+            $ativo = isset($_POST['modulos'][$modulo]) ? 1 : 0;
+            $stmt2 = $conn->prepare("
+                INSERT INTO company_modules (company_id, modulo, ativo)
+                VALUES (?, ?, ?)
+                ON DUPLICATE KEY UPDATE ativo = VALUES(ativo), updated_at = NOW()
+            ");
+            $stmt2->bind_param("isi", $companyId, $modulo, $ativo);
+            $stmt2->execute();
+        }
+        clearModulesCache($companyId);
+        $success = "Módulos atualizados com sucesso!";
+    }
 }
 
 // Fetch Company Details
@@ -125,6 +142,16 @@ $stmtDiag->bind_param("i", $companyId);
 $stmtDiag->execute();
 $stmtDiag->execute();
 $diagnosticos = $stmtDiag->get_result();
+
+// Buscar módulos habilitados da empresa
+$modulosAtivos = [];
+$stmtMod = $conn->prepare("SELECT modulo, ativo FROM company_modules WHERE company_id = ?");
+$stmtMod->bind_param("i", $companyId);
+$stmtMod->execute();
+$resMod = $stmtMod->get_result();
+while ($m = $resMod->fetch_assoc()) {
+    $modulosAtivos[$m['modulo']] = (bool) $m['ativo'];
+}
 
 // Fetch Mentorias
 $stmtMen = $conn->prepare("
@@ -254,6 +281,12 @@ $tarefas = $stmtTasks->get_result();
             <button class="nav-link" id="gestao-tab" data-bs-toggle="tab" data-bs-target="#gestao" type="button"
                 role="tab">
                 <i class="bi bi-kanban me-2"></i>Projetos e Tarefas
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="modulos-tab" data-bs-toggle="tab" data-bs-target="#modulos" type="button"
+                role="tab">
+                <i class="bi bi-grid me-2"></i>Módulos
             </button>
         </li>
     </ul>
@@ -624,6 +657,66 @@ $tarefas = $stmtTasks->get_result();
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Aba Módulos -->
+        <div class="tab-pane fade" id="modulos" role="tabpanel">
+            <div class="card shadow border-0">
+                <div class="card-header bg-white py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="bi bi-grid me-2"></i>Módulos Habilitados
+                    </h6>
+                    <small class="text-muted">Módulos fixos (Dashboard, Perfil, Configurações, Financeiro) estão sempre ativos.</small>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <input type="hidden" name="action" value="salvar_modulos">
+                        <?php
+                        $todosModulos = [
+                            'gestao'              => ['icon' => 'bi-kanban',      'label' => 'Gestão',         'desc' => 'Projetos, Tarefas, Diagnóstico, OKRs'],
+                            'ferramentas'         => ['icon' => 'bi-tools',       'label' => 'Ferramentas',    'desc' => 'SWOT, Canvas, BCG, Porter e mais'],
+                            'produtos'            => ['icon' => 'bi-box-seam',    'label' => 'Produtos',       'desc' => 'Cursos e Mentorias'],
+                            'loja'                => ['icon' => 'bi-shop',        'label' => 'Loja',           'desc' => 'Pagamentos e compras'],
+                            'documentacao'        => ['icon' => 'bi-file-text',   'label' => 'Documentação',   'desc' => 'Base de conhecimento'],
+                            'onboarding'          => ['icon' => 'bi-play-circle', 'label' => 'Onboarding',     'desc' => 'Fluxo de boas-vindas'],
+                            'minhas-notificacoes' => ['icon' => 'bi-bell',        'label' => 'Notificações',   'desc' => 'Central de notificações'],
+                        ];
+                        ?>
+                        <div class="row g-3">
+                            <?php foreach ($todosModulos as $slug => $info): ?>
+                                <?php $ativo = $modulosAtivos[$slug] ?? true; ?>
+                                <div class="col-md-4">
+                                    <div class="card border <?php echo $ativo ? 'border-success' : 'border-secondary opacity-50'; ?> h-100">
+                                        <div class="card-body d-flex align-items-center justify-content-between">
+                                            <div class="d-flex align-items-center gap-3">
+                                                <div class="bg-light rounded p-2">
+                                                    <i class="bi <?php echo $info['icon']; ?> fs-4 text-primary"></i>
+                                                </div>
+                                                <div>
+                                                    <div class="fw-bold"><?php echo $info['label']; ?></div>
+                                                    <small class="text-muted"><?php echo $info['desc']; ?></small>
+                                                </div>
+                                            </div>
+                                            <div class="form-check form-switch ms-3">
+                                                <input class="form-check-input" type="checkbox"
+                                                    name="modulos[<?php echo $slug; ?>]"
+                                                    id="mod_<?php echo str_replace('-', '_', $slug); ?>"
+                                                    <?php echo $ativo ? 'checked' : ''; ?>
+                                                    role="switch" style="width:2.5em; height:1.4em; cursor:pointer;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <div class="mt-4 d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg me-2"></i>Salvar Módulos
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

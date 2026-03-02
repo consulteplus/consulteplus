@@ -3,6 +3,11 @@ $pageTitle = "Gestão Empresarial";
 require_once __DIR__ . '/../../includes/header.php';
 
 checkPermission(['admin', 'cliente']);
+
+if (!isModuleEnabled('gestao')) {
+    redirect('dashboard?modulo_bloqueado=gestao');
+    exit;
+}
 ?>
 
 <div class="page-header d-flex justify-content-between align-items-center mb-4">
