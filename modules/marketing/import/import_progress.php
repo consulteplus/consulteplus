@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../includes/auth.php';
 
 // Check permissions
-checkPermission(['admin', 'superadmin']);
+checkPermission(['admin', 'cliente']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['csv_path'])) {
     // Setup Session for Batch Processing

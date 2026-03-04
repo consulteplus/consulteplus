@@ -3,7 +3,7 @@ $pageTitle = "Agentes de IA - Atendimento";
 require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permission
-checkPermission(['admin', 'superadmin']);
+checkPermission(['admin', 'cliente']);
 ?>
 
 <style>

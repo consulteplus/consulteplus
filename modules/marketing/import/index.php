@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permissions
-checkPermission(['admin', 'superadmin']);
+checkPermission(['admin', 'cliente']);
 ?>
 
 <div class="container-fluid py-4">
