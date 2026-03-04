@@ -1,6 +1,6 @@
 ﻿<?php
 $pageTitle = "Editor de Prompt - Agentes de IA";
-require_once __DIR__ . '/../../includes/header.php';
+require_once __DIR__ . '/../../../includes/header.php';
 
 checkPermission(['admin', 'superadmin']);
 

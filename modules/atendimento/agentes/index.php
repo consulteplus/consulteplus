@@ -1,6 +1,6 @@
 ﻿<?php
 $pageTitle = "Agentes de IA - Atendimento";
-require_once __DIR__ . '/../../includes/header.php';
+require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permission
 checkPermission(['admin', 'superadmin']);
