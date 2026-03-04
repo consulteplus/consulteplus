@@ -117,7 +117,7 @@ if (!hasPermission(['admin', 'superadmin'])) {
     </div>
 </div>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
 
 <script>
     let audienciaIdExcluir = null;

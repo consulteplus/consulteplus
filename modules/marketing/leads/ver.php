@@ -1,6 +1,6 @@
 ﻿<?php
 $pageTitle = "Detalhes do Lead";
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permission
@@ -384,4 +384,4 @@ if ($leadId === 0) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

@@ -1,6 +1,6 @@
 ﻿<?php
 $pageTitle = "Mapeamento de Colunas";
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permissions
@@ -139,4 +139,4 @@ $campos_empresas = [
     </form>
 </div>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

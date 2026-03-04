@@ -1,9 +1,9 @@
 ﻿<?php
 require_once __DIR__ . '/../../../includes/header.php';
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 
 // Carregar Configurações Atuais
-$configFile = __DIR__ . '/../../../../config/n8n_config.json';
+$configFile = __DIR__ . '/../../../config/n8n_config.json';
 $configData = [];
 if (file_exists($configFile)) {
     $configData = json_decode(file_get_contents($configFile), true);
@@ -736,4 +736,4 @@ if (file_exists($configFile)) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

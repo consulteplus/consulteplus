@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 
 // Disable error display for cleaner JSON response
 error_reporting(0);
@@ -8,7 +8,7 @@ ini_set('display_errors', 0);
 header('Content-Type: application/json');
 
 // Carregar Configurações
-$configFile = __DIR__ . '/../../../../config/uazapi_config.json';
+$configFile = __DIR__ . '/../../../config/uazapi_config.json';
 if (!file_exists($configFile)) {
     echo json_encode(['success' => false, 'error' => 'Arquivo de configuração do Uazapi não procurado.']);
     exit;

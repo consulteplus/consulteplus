@@ -1,9 +1,9 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
-require_once __DIR__ . '/../../../../config/database.php';
-require_once __DIR__ . '/../../../../includes/auth.php';
-require_once __DIR__ . '/../../../../classes/AgenteIAService.php';
-require_once __DIR__ . '/../../../../classes/ApiResponse.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../config/database.php';
+require_once __DIR__ . '/../../../includes/auth.php';
+require_once __DIR__ . '/../../../classes/AgenteIAService.php';
+require_once __DIR__ . '/../../../classes/ApiResponse.php';
 
 header('Content-Type: application/json');
 

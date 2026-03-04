@@ -1,7 +1,7 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
-require_once __DIR__ . '/../../../../config/database.php';
-require_once __DIR__ . '/../../../../includes/auth.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../config/database.php';
+require_once __DIR__ . '/../../../includes/auth.php';
 
 // Configurações de erro JSON-safe
 ini_set('display_errors', 0);

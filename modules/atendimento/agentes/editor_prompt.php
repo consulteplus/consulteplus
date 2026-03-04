@@ -7,7 +7,7 @@ checkPermission(['admin', 'superadmin']);
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if (!$id) {
     echo "<div class='alert alert-danger'>ID do agente não informado.</div>";
-    require_once __DIR__ . '/../../../../includes/footer.php';
+    require_once __DIR__ . '/../../../includes/footer.php';
     exit;
 }
 ?>
@@ -636,7 +636,7 @@ if (!$id) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
 
 <!-- Modal Simulador -->
 <div class="modal fade" id="modalSimulador" tabindex="-1">

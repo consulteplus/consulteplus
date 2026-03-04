@@ -1,6 +1,6 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
-require_once __DIR__ . '/../../../../includes/auth.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../includes/auth.php';
 
 // Check permissions
 checkPermission(['admin', 'superadmin']);
@@ -187,4 +187,4 @@ require_once __DIR__ . '/../../../includes/header.php';
     });
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

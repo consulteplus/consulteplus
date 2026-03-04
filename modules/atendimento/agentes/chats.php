@@ -411,4 +411,4 @@ checkPermission(['admin', 'superadmin']);
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

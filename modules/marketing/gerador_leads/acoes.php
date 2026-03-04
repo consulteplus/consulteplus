@@ -1,6 +1,6 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
-require_once __DIR__ . '/../../../../config/database.php';
+require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../../config/database.php';
 
 // Verificação simples de sessão
 session_start();
@@ -16,7 +16,7 @@ ini_set('display_errors', 0);
 header('Content-Type: application/json');
 
 $acao = $_GET['acao'] ?? '';
-$n8nConfigFile = __DIR__ . '/../../../../config/n8n_config.json';
+$n8nConfigFile = __DIR__ . '/../../../config/n8n_config.json';
 
 // --- FUNÇÕES AUXILIARES ---
 
@@ -318,7 +318,7 @@ if ($acao == 'extrair_whatsapp') {
         }
 
         // 1. Buscar Grupos na API
-        $configFile = __DIR__ . '/../../../../config/uazapi_config.json';
+        $configFile = __DIR__ . '/../../../config/uazapi_config.json';
         if (!file_exists($configFile)) {
             throw new Exception('Configuração Uazapi ausente.');
         }

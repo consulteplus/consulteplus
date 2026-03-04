@@ -1,6 +1,6 @@
 ﻿<?php
 $pageTitle = "Base de Leads";
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../includes/header.php';
 
 // Check permission
@@ -373,4 +373,4 @@ checkPermission(['admin', 'cliente']);
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

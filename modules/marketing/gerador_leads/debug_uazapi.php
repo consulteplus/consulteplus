@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../../../config/config.php';
+require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/api_whatsapp.php';
 
 // Force action to status and simulate request
@@ -9,7 +9,7 @@ $_GET['action'] = 'status';
 // Actually, looking at api_whatsapp.php, it runs logic based on $action.
 // Let's just use the function defined there if possible, but it's simpler to just copy the request logic for a standalone test.
 
-$configFile = __DIR__ . '/../../../../config/uazapi_config.json';
+$configFile = __DIR__ . '/../../../config/uazapi_config.json';
 $config = json_decode(file_get_contents($configFile), true);
 $baseUrl = rtrim($config['base_url'], '/');
 $apiToken = $config['api_token'];

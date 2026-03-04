@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $isEdit = true;
     $id = (int) $_GET['id'];
 
-    require_once __DIR__ . '/../../../../config/database.php';
+    require_once __DIR__ . '/../../../config/database.php';
     $sql = "SELECT * FROM audiencias WHERE id = ? AND company_id = ?";
     $stmt = $conn->prepare($sql);
     $company_id = getCompanyId();
@@ -176,7 +176,7 @@ if (isset($_GET['id'])) {
 
 <input type="hidden" id="audienciaId" value="<?php echo $audiencia ? $audiencia['id'] : '0'; ?>">
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
 
 <script>
     let filtroCount = 0;
@@ -463,7 +463,7 @@ if (isset($_GET['id'])) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
 
 <script>
     // Funções de templates (após jQuery estar carregado)

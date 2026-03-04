@@ -15,7 +15,7 @@ if (!isset($_GET['id'])) {
 }
 
 $id = (int) $_GET['id'];
-require_once __DIR__ . '/../../../../config/database.php';
+require_once __DIR__ . '/../../../config/database.php';
 
 $sql = "SELECT a.*, u.nome as criador_nome FROM audiencias a
         LEFT JOIN users u ON a.criado_por = u.id
@@ -173,7 +173,7 @@ $filtros = json_decode($audiencia['filtros_json'], true);
     </div>
 </div>
 
-<?php require_once __DIR__ . '/../../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
 
 <script>
     const audienciaId = <?php echo $id; ?>;
