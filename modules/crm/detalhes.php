@@ -387,7 +387,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
                 }
 
                 timeoutBusca = setTimeout(() => {
-                    fetch(BASE_URL + 'modules/crm/acoes.php?acao=buscar_contatos&tipo=empresa&q=' + encodeURIComponent(termo))
+                    fetch(BASE_URL + 'crm/acoes?acao=buscar_contatos&tipo=empresa&q=' + encodeURIComponent(termo))
                         .then(res => res.json())
                         .then(response => {
                             listaResultados.innerHTML = '';
@@ -435,7 +435,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(BASE_URL + 'modules/crm/acoes.php?acao=vincular_empresa', {
+                fetch(BASE_URL + 'crm/acoes?acao=vincular_empresa', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -495,7 +495,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         const texto = document.getElementById('textoAtividadeModal').value;
         if (!texto.trim()) { alert('Digite algo...'); return; }
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=salvar_anotacao', {
+        fetch(BASE_URL + 'crm/acoes?acao=salvar_anotacao', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -549,8 +549,8 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
         // Fetch Detail and Chat in parallel
         Promise.all([
-            fetch(BASE_URL + 'modules/crm/acoes.php?acao=obter_negocio&id=' + id + '&_t=' + new Date().getTime()).then(r => r.json()),
-            fetch(BASE_URL + 'modules/crm/acoes.php?acao=buscar_chat_negocio&negocio_id=' + id).then(r => r.json())
+            fetch(BASE_URL + 'crm/acoes?acao=obter_negocio&id=' + id + '&_t=' + new Date().getTime()).then(r => r.json()),
+            fetch(BASE_URL + 'crm/acoes?acao=buscar_chat_negocio&negocio_id=' + id).then(r => r.json())
         ])
             .then(([resNegocio, resChat]) => {
                 const response = resNegocio; // Alias
@@ -691,7 +691,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
             return;
         }
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=salvar_anotacao', {
+        fetch(BASE_URL + 'crm/acoes?acao=salvar_anotacao', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -925,7 +925,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
         const titulo = document.getElementById('inputTitulo').value;
         const valor = document.getElementById('inputValor').value;
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=editar_negocio', {
+        fetch(BASE_URL + 'crm/acoes?acao=editar_negocio', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: dealId, titulo: titulo, valor_estimado: valor })
@@ -954,7 +954,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
             cancelButtonText: 'Cancelar'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(BASE_URL + 'modules/crm/acoes.php?acao=excluir_negocio', {
+                fetch(BASE_URL + 'crm/acoes?acao=excluir_negocio', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

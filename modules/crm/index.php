@@ -692,7 +692,7 @@ if ($view === 'quadro') {
         const id = document.getElementById('perdidoId').value;
         const motivo = document.getElementById('motivoPerdido').value;
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=marcar_perdido', {
+        fetch(BASE_URL + 'crm/acoes?acao=marcar_perdido', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id, motivo })
@@ -708,7 +708,7 @@ if ($view === 'quadro') {
     function marcarGanho(id) {
         if (!confirm('Parabéns! Deseja marcar este negócio como GANHO?')) return;
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=marcar_ganho', {
+        fetch(BASE_URL + 'crm/acoes?acao=marcar_ganho', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
@@ -732,7 +732,7 @@ if ($view === 'quadro') {
 
             if (term.length < 2) { list.style.display = 'none'; return; }
 
-            fetch(BASE_URL + 'modules/crm/acoes.php?acao=buscar_contatos&busca=' + encodeURIComponent(term) + '&tipo=user')
+            fetch(BASE_URL + 'crm/acoes?acao=buscar_contatos&busca=' + encodeURIComponent(term) + '&tipo=user')
                 .then(res => res.json())
                 .then(response => {
                     list.innerHTML = '';
@@ -770,7 +770,7 @@ if ($view === 'quadro') {
 
             if (term.length < 2) { list.style.display = 'none'; return; }
 
-            fetch(BASE_URL + 'modules/crm/acoes.php?acao=buscar_contatos&busca=' + encodeURIComponent(term) + '&tipo=empresa')
+            fetch(BASE_URL + 'crm/acoes?acao=buscar_contatos&busca=' + encodeURIComponent(term) + '&tipo=empresa')
                 .then(res => res.json())
                 .then(response => {
                     list.innerHTML = '';
@@ -844,7 +844,7 @@ if ($view === 'quadro') {
             return;
         }
 
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=criar_negocio', {
+        fetch(BASE_URL + 'crm/acoes?acao=criar_negocio', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
@@ -901,7 +901,7 @@ if ($view === 'quadro') {
         var dealId = ev.dataTransfer.getData("text");
 
         // Update via AJAX
-        fetch(BASE_URL + 'modules/crm/acoes.php?acao=mover_etapa', {
+        fetch(BASE_URL + 'crm/acoes?acao=mover_etapa', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ deal_id: dealId, etapa_id: etapaId })

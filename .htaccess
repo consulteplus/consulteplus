@@ -50,14 +50,30 @@ RewriteRule ^prontuarios/novo/([0-9]+)/?$ modules/prontuarios/novo.php?agendamen
 RewriteRule ^prontuarios/editar/([0-9]+)/?$ modules/prontuarios/editar.php?id=$1 [L]
 RewriteRule ^prontuarios/([0-9]+)/?$ modules/prontuarios/visualizar.php?id=$1 [L]
 
-# Catch all - must be last
-# URLs amigáveis para módulos
-# CRM
+# CRM (Cliente)
 RewriteRule ^crm/?$ modules/crm/index.php [L,QSA]
 RewriteRule ^crm/config/?$ modules/crm/config.php [L,QSA]
-RewriteRule ^crm/negocio/([0-9]+)$ modules/crm/detalhes.php?id=$1 [L,QSA]
+RewriteRule ^crm/acoes/?$ modules/crm/acoes.php [L,QSA]
+RewriteRule ^crm/negocio/([0-9]+)/?$ modules/crm/detalhes.php?id=$1 [L,QSA]
 RewriteRule ^crm/quadro/?([0-9]*)$ modules/crm/index.php?view=quadro&funil=$1 [L,QSA]
 RewriteRule ^crm/lista/?([0-9]*)$ modules/crm/index.php?view=lista&funil=$1 [L,QSA]
+
+# Atendimento (Cliente)
+RewriteRule ^atendimento/agentes/?$ modules/atendimento/agentes/index.php [L,QSA]
+RewriteRule ^atendimento/agentes/acoes/?$ modules/atendimento/agentes/acoes.php [L,QSA]
+RewriteRule ^atendimento/agentes/chats/?$ modules/atendimento/agentes/chats.php [L,QSA]
+RewriteRule ^atendimento/agentes/conversas/?$ modules/atendimento/agentes/conversas.php [L,QSA]
+RewriteRule ^atendimento/agentes/editor/([0-9]+)/?$ modules/atendimento/agentes/editor_prompt.php?id=$1 [L,QSA]
+
+# Marketing (Cliente)
+RewriteRule ^marketing/?$ modules/marketing/index.php [L,QSA]
+RewriteRule ^marketing/leads/?$ modules/marketing/leads/index.php [L,QSA]
+RewriteRule ^marketing/leads/([0-9]+)/?$ modules/marketing/leads/ver.php?id=$1 [L,QSA]
+RewriteRule ^marketing/audiencias/?$ modules/marketing/audiencias/index.php [L,QSA]
+RewriteRule ^marketing/audiencias/acoes/?$ modules/marketing/audiencias/acoes.php [L,QSA]
+RewriteRule ^marketing/gerador_leads/?$ modules/marketing/gerador_leads/index.php [L,QSA]
+RewriteRule ^marketing/gerador_leads/acoes/?$ modules/marketing/gerador_leads/acoes.php [L,QSA]
+RewriteRule ^marketing/import/?$ modules/marketing/import/index.php [L,QSA]
 
 RewriteRule ^dashboard/?$ modules/dashboard/index.php [L]
 
