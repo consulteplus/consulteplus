@@ -296,7 +296,7 @@ while ($row = $res->fetch_assoc()) {
     });
 
     function salvarOrdemEtapas(funilId, ordemArray) {
-        fetch(BASE_URL + 'crm/acoes.php?acao=reordenar_etapas', {
+        fetch(BASE_URL + 'modules/crm/acoes.php?acao=reordenar_etapas', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ funil_id: funilId, etapas: ordemArray })
@@ -338,7 +338,7 @@ while ($row = $res->fetch_assoc()) {
         const body = { id, nome, descricao: desc };
 
         // Absolute Path to Avoid Friendly URL Issues
-        fetch(BASE_URL + 'crm/acoes.php?acao=' + acao, {
+        fetch(BASE_URL + 'modules/crm/acoes.php?acao=' + acao, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -357,7 +357,7 @@ while ($row = $res->fetch_assoc()) {
     function excluirFunil(id) {
         if (!confirm('Tem certeza? Isso excluirá o funil e todas as etapas.')) return;
 
-        fetch(BASE_URL + 'crm/acoes.php?acao=excluir_funil', {
+        fetch(BASE_URL + 'modules/crm/acoes.php?acao=excluir_funil', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
@@ -424,7 +424,7 @@ while ($row = $res->fetch_assoc()) {
         const acao = id ? 'editar_etapa' : 'criar_etapa';
         const body = { id, funil_id, nome, ordem, cor };
 
-        fetch(BASE_URL + 'crm/acoes.php?acao=' + acao, {
+        fetch(BASE_URL + 'modules/crm/acoes.php?acao=' + acao, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
@@ -440,7 +440,7 @@ while ($row = $res->fetch_assoc()) {
     function excluirEtapa(id) {
         if (!confirm('Tem certeza que deseja excluir esta etapa?')) return;
 
-        fetch(BASE_URL + 'crm/acoes.php?acao=excluir_etapa', {
+        fetch(BASE_URL + 'modules/crm/acoes.php?acao=excluir_etapa', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id })
