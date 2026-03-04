@@ -1,13 +1,9 @@
 ﻿<?php
 $pageTitle = "Editor de Prompt - Agentes de IA";
-require_once __DIR__ . '/../../../includes/header.php';
-
-checkPermission(['admin', 'cliente']);
 
 $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 if (!$id) {
     echo "<div class='alert alert-danger'>ID do agente não informado.</div>";
-    require_once __DIR__ . '/../../../includes/footer.php';
     exit;
 }
 ?>
@@ -285,7 +281,7 @@ if (!$id) {
         <button class="btn btn-info btn-sm text-white" onclick="abrirSimulador()">
             <i class="bi bi-whatsapp me-2"></i>Testar Simulador
         </button>
-        <a href="<?php echo BASE_URL; ?>admin/atendimento/agentes" class="btn btn-outline-secondary shadow-sm">
+        <a href="<?php echo BASE_URL; ?>atendimento/agentes" class="btn btn-outline-secondary shadow-sm">
             <i class="bi bi-arrow-left me-2"></i>Voltar
         </a>
         <button class="btn btn-primary shadow-sm" onclick="salvarPrompt()">
@@ -636,7 +632,7 @@ if (!$id) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
+
 
 <!-- Modal Simulador -->
 <div class="modal fade" id="modalSimulador" tabindex="-1">

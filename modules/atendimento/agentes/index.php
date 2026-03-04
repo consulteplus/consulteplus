@@ -1,9 +1,5 @@
 ﻿<?php
 $pageTitle = "Agentes de IA - Atendimento";
-require_once __DIR__ . '/../../../includes/header.php';
-
-// Check permission
-checkPermission(['admin', 'cliente']);
 ?>
 
 <style>
@@ -28,7 +24,7 @@ checkPermission(['admin', 'cliente']);
         <p class="text-muted mb-0">Crie e gerencie agentes de IA personalizados</p>
     </div>
     <div class="d-flex gap-2">
-        <a href="<?php echo BASE_URL; ?>admin/atendimento/chats" class="btn btn-outline-primary shadow-sm">
+        <a href="<?php echo BASE_URL; ?>atendimento/agentes/chats" class="btn btn-outline-primary shadow-sm">
             <i class="bi bi-chat-dots me-2"></i>Ver Conversas
         </a>
         <button class="btn btn-primary shadow-sm" onclick="abrirModalAgente()">
@@ -317,7 +313,7 @@ checkPermission(['admin', 'cliente']);
                             <button class="btn btn-outline-secondary" onclick="editarAgente(${agente.id})" title="Editar">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <a href="${BASE_URL}admin/atendimento/agentes/editor/${agente.id}" class="btn btn-info text-white" title="Editor de Prompt">
+                            <a href="${BASE_URL}atendimento/agentes/editor/${agente.id}" class="btn btn-info text-white" title="Editor de Prompt">
                                 <i class="bi bi-file-text me-1"></i> Prompt
                             </a>
                             <button class="btn btn-outline-primary" onclick="testarAgente(${agente.id})" title="Testar">
@@ -474,8 +470,6 @@ checkPermission(['admin', 'cliente']);
             alert('Salve o agente primeiro antes de usar o editor avançado.');
             return;
         }
-        window.location.href = BASE_URL + 'admin/atendimento/agentes/editor/' + id;
+        window.location.href = BASE_URL + 'atendimento/agentes/editor/' + id;
     }
 </script>
-
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>

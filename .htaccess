@@ -58,12 +58,8 @@ RewriteRule ^crm/negocio/([0-9]+)/?$ modules/crm/detalhes.php?id=$1 [L,QSA]
 RewriteRule ^crm/quadro/?([0-9]*)$ modules/crm/index.php?view=quadro&funil=$1 [L,QSA]
 RewriteRule ^crm/lista/?([0-9]*)$ modules/crm/index.php?view=lista&funil=$1 [L,QSA]
 
-# Atendimento (Cliente)
-RewriteRule ^atendimento/agentes/?$ modules/atendimento/agentes/index.php [L,QSA]
-RewriteRule ^atendimento/agentes/acoes/?$ modules/atendimento/agentes/acoes.php [L,QSA]
-RewriteRule ^atendimento/agentes/chats/?$ modules/atendimento/agentes/chats.php [L,QSA]
-RewriteRule ^atendimento/agentes/conversas/?$ modules/atendimento/agentes/conversas.php [L,QSA]
-RewriteRule ^atendimento/agentes/editor/([0-9]+)/?$ modules/atendimento/agentes/editor_prompt.php?id=$1 [L,QSA]
+# Atendimento (Cliente - Roteador Central)
+RewriteRule ^atendimento/?(.*)$ index.php?url=atendimento/$1 [L,QSA]
 
 # Marketing (Cliente)
 RewriteRule ^marketing/?$ modules/marketing/index.php [L,QSA]

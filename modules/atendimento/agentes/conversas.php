@@ -1,7 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../../config/config.php';
 require_once __DIR__ . '/../../../classes/SupabaseClient.php';
-require_once __DIR__ . '/../../../classes/ApiResponse.php';
 
 header('Content-Type: application/json');
 

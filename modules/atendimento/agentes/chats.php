@@ -1,9 +1,5 @@
 ﻿<?php
 $pageTitle = "Atendimento - Chats";
-require_once __DIR__ . '/../../../includes/header.php';
-
-// Check permission
-checkPermission(['admin', 'cliente']);
 ?>
 
 <style>
@@ -102,7 +98,7 @@ checkPermission(['admin', 'cliente']);
         <h2 class="mb-1"><i class="bi bi-chat-dots me-2"></i>Atendimentos</h2>
         <p class="text-muted mb-0">Gerencie as conversas do Supabase</p>
     </div>
-    <a href="<?php echo BASE_URL; ?>admin/atendimento/agentes" class="btn btn-outline-secondary">
+    <a href="<?php echo BASE_URL; ?>atendimento/agentes" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left me-2"></i>Voltar para Agentes
     </a>
 </div>
@@ -172,7 +168,7 @@ checkPermission(['admin', 'cliente']);
     });
 
     function carregarConversas() {
-        fetch(BASE_URL + 'admin/atendimento/agentes/conversas?acao=listar')
+        fetch(BASE_URL + 'atendimento/agentes/conversas?acao=listar')
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.conversas) {
@@ -268,7 +264,7 @@ checkPermission(['admin', 'cliente']);
             </div>
         `;
 
-        fetch(BASE_URL + 'admin/atendimento/agentes/conversas?acao=mensagens&conversation_id=' + conversationId)
+        fetch(BASE_URL + 'atendimento/agentes/conversas?acao=mensagens&conversation_id=' + conversationId)
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.mensagens) {
@@ -367,7 +363,7 @@ checkPermission(['admin', 'cliente']);
         const container = document.getElementById('chatActions');
         container.innerHTML = '<div class="spinner-border spinner-border-sm text-muted"></div>';
 
-        fetch(BASE_URL + 'admin/atendimento/agentes/conversas?acao=atualizar_status', {
+        fetch(BASE_URL + 'atendimento/agentes/conversas?acao=atualizar_status', {
             method: 'POST',
             body: JSON.stringify({
                 conversation_id: activeChatId,
@@ -392,7 +388,7 @@ checkPermission(['admin', 'cliente']);
 
                     // Reload Messages to see the Log
                     const messagesContainer = document.getElementById('messagesContainer');
-                    fetch(BASE_URL + 'admin/atendimento/agentes/conversas?acao=mensagens&conversation_id=' + activeChatId)
+                    fetch(BASE_URL + 'atendimento/agentes/conversas?acao=mensagens&conversation_id=' + activeChatId)
                         .then(r => r.json())
                         .then(res => {
                             if (res.success) renderizarMensagens(res.data.mensagens);
@@ -410,5 +406,3 @@ checkPermission(['admin', 'cliente']);
             });
     }
 </script>
-
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
