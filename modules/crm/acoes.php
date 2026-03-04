@@ -391,13 +391,13 @@ function renderCard($deal)
     $baseUrl = defined('BASE_URL') ? BASE_URL : '/consulteplus/';
 
     return "
-    <div class='kanban-card {$borderClass}' draggable='true' ondragstart='drag(event, {$deal['id']})' onclick=\"location.href='{$baseUrl}crm/detalhes.php?id={$deal['id']}'\">
+    <div class='kanban-card {$borderClass}' draggable='true' ondragstart='drag(event, {$deal['id']})' onclick=\"location.href='{$baseUrl}crm/negocio/{$deal['id']}'\">
         <div class='d-flex justify-content-between align-items-start'>
             <div class='card-title text-truncate' title='{$titulo}'>{$titulo}</div>
             <div class='dropdown' onclick='event.stopPropagation()'>
                 <button class='btn btn-link btn-sm p-0 text-muted' data-bs-toggle='dropdown'><i class='bi bi-three-dots'></i></button>
                 <ul class='dropdown-menu dropdown-menu-end'>
-                    <li><a class='dropdown-item' href='{$baseUrl}crm/detalhes.php?id={$deal['id']}'>Editar</a></li>
+                    <li><a class='dropdown-item' href='{$baseUrl}crm/negocio/{$deal['id']}'>Editar</a></li>
                     <li><a class='dropdown-item text-success' href='#' onclick='marcarGanho({$deal['id']})'>Ganho</a></li>
                     <li><a class='dropdown-item text-danger' href='#' onclick='abrirModalPerdido({$deal['id']})'>Perdido</a></li>
                 </ul>

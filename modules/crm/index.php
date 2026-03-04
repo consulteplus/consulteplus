@@ -299,7 +299,7 @@ if ($view === 'quadro') {
                                 ?>
                                 <div class="kanban-card <?php echo $borderClass; ?>" draggable="true"
                                     ondragstart="drag(event, <?php echo $deal['id']; ?>)"
-                                    onclick="location.href='<?php echo BASE_URL; ?>crm/detalhes.php?id=<?php echo $deal['id']; ?>'">
+                                    onclick="location.href='<?php echo BASE_URL; ?>crm/negocio/<?php echo $deal['id']; ?>'">
 
                                     <div class="d-flex justify-content-between align-items-start">
                                         <div class="card-title text-truncate"
@@ -311,7 +311,7 @@ if ($view === 'quadro') {
                                                     class="bi bi-three-dots"></i></button>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li><a class="dropdown-item"
-                                                        href="<?php echo BASE_URL; ?>crm/detalhes.php?id=<?php echo $deal['id']; ?>">Editar</a>
+                                                        href="<?php echo BASE_URL; ?>crm/negocio/<?php echo $deal['id']; ?>">Editar</a>
                                                 </li>
                                                 <li><a class="dropdown-item text-success" href="#"
                                                         onclick="marcarGanho(<?php echo $deal['id']; ?>)">Ganho</a></li>
