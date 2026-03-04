@@ -1,13 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../config/config.php';
-require_once __DIR__ . '/../../includes/header.php';
-
-if (!isModuleEnabled('crm')) {
-    redirect('dashboard?modulo_bloqueado=crm');
-    exit;
-}
-// Menu is already included by header.php
-
+$pageTitle = "Detalhes do Negócio - CRM";
 $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 ?>
 
@@ -112,8 +104,8 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
     <div class="d-flex justify-content-between align-items-center mb-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 bg-white px-3 py-2 rounded-pill shadow-sm">
-                <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>crm/"
-                        class="text-decoration-none fw-bold"><i class="bi bi-grid-fill me-1"></i> CRM</a></li>
+                <li class="breadcrumb-item"><a href="<?php echo BASE_URL; ?>crm" class="text-decoration-none fw-bold"><i
+                            class="bi bi-grid-fill me-1"></i> CRM</a></li>
                 <li class="breadcrumb-item active text-muted" aria-current="page">Negócio #<?php echo $id_negocio; ?>
                 </li>
             </ol>
@@ -610,7 +602,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
                         logs.forEach(log => {
                             // Botão Link Conversa (Style Adjusted to auto height)
-                            const btnLink = `<a href="${BASE_URL}modules/admin/atendimento/agentes/chats.php?id=${log.conversation_id}" target="_blank" class="btn btn-sm btn-outline-secondary py-1 px-2 d-inline-flex align-items-center" style="font-size: 0.8em;">Abrir Conversa #${log.conversation_id.substr(0, 8)}... <i class="bi bi-box-arrow-up-right ms-2"></i></a>`;
+                            const btnLink = `<a href="${BASE_URL}atendimento/agentes/chats?id=${log.conversation_id}" target="_blank" class="btn btn-sm btn-outline-secondary py-1 px-2 d-inline-flex align-items-center" style="font-size: 0.8em;">Abrir Conversa #${log.conversation_id.substr(0, 8)}... <i class="bi bi-box-arrow-up-right ms-2"></i></a>`;
 
                             // Botão Resumo IA (se finalizado)
                             let btnResumo = '';
@@ -774,7 +766,7 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
                         </div>
                     </div>
 
-                    <a href="${BASE_URL}modules/admin/atendimento/agentes/chats.php" target="_blank" class="btn btn-sm btn-light border text-muted" title="Abrir em nova aba">
+                    <a href="${BASE_URL}atendimento/agentes/chats" target="_blank" class="btn btn-sm btn-light border text-muted" title="Abrir em nova aba">
                         <i class="bi bi-box-arrow-up-right"></i>
                     </a>
                 </div>
@@ -988,5 +980,3 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

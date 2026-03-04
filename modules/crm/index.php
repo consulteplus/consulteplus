@@ -1,6 +1,5 @@
 ﻿<?php
 $pageTitle = "Pipeline de Vendas";
-require_once __DIR__ . '/../../includes/header.php';
 
 if (!isModuleEnabled('crm')) {
     redirect('dashboard?modulo_bloqueado=crm');
@@ -8,7 +7,6 @@ if (!isModuleEnabled('crm')) {
 }
 require_once __DIR__ . '/../../classes/CrmService.php';
 
-checkPermission(['admin', 'cliente']);
 
 $crmService = new CrmService($conn);
 $company_id = getCompanyId();
@@ -925,6 +923,3 @@ if ($view === 'quadro') {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Scripts Gerais do CRM -->
-
-
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

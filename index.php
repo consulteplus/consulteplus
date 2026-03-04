@@ -59,6 +59,35 @@ if ($url === 'atendimento/agentes') {
     $filePath = __DIR__ . '/modules/atendimento/agentes/editor_prompt.php';
 }
 
+// ------------------------ CRM ------------------------
+if ($moduleConfig === 'crm') {
+    if (!hasPermission(['admin', 'cliente'])) {
+        redirect('dashboard');
+    }
+    if (!isModuleEnabled('crm')) {
+        $_SESSION['error_message'] = "Você não tem permissão para acessar este módulo.";
+        redirect('dashboard');
+    }
+}
+
+if ($url === 'crm' || preg_match('/^crm\/(quadro|lista)(\/[0-9]*)?$/', $url)) {
+    // Tratar view e funil pela URL
+    if (preg_match('/^crm\/(quadro|lista)\/?([0-9]*)$/', $url, $matches)) {
+        $_GET['view'] = $matches[1];
+        if (!empty($matches[2]))
+            $_GET['funil'] = $matches[2];
+    }
+    $filePath = __DIR__ . '/modules/crm/index.php';
+} elseif ($url === 'crm/config') {
+    $filePath = __DIR__ . '/modules/crm/config.php';
+} elseif ($url === 'crm/acoes') {
+    $filePath = __DIR__ . '/modules/crm/acoes.php';
+    $isAction = true;
+} elseif (preg_match('/^crm\/negocio\/([0-9]+)$/', $url, $matches)) {
+    $_GET['id'] = $matches[1];
+    $filePath = __DIR__ . '/modules/crm/detalhes.php';
+}
+
 // 4. Execução da Rota
 if ($filePath && file_exists($filePath)) {
     if (!$isAction) {

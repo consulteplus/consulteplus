@@ -1,11 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../config/config.php';
-require_once __DIR__ . '/../../includes/header.php';
-
-if (!isModuleEnabled('crm')) {
-    redirect('dashboard?modulo_bloqueado=crm');
-    exit;
-}
+$pageTitle = "Configurações do CRM";
 // Menu is already included by header.php
 
 // Verificar Permissão
@@ -453,5 +447,3 @@ while ($row = $res->fetch_assoc()) {
             .catch(err => alert('Erro de conexão.'));
     }
 </script>
-
-<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

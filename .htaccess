@@ -50,13 +50,9 @@ RewriteRule ^prontuarios/novo/([0-9]+)/?$ modules/prontuarios/novo.php?agendamen
 RewriteRule ^prontuarios/editar/([0-9]+)/?$ modules/prontuarios/editar.php?id=$1 [L]
 RewriteRule ^prontuarios/([0-9]+)/?$ modules/prontuarios/visualizar.php?id=$1 [L]
 
-# CRM (Cliente)
-RewriteRule ^crm/?$ modules/crm/index.php [L,QSA]
-RewriteRule ^crm/config/?$ modules/crm/config.php [L,QSA]
-RewriteRule ^crm/acoes/?$ modules/crm/acoes.php [L,QSA]
-RewriteRule ^crm/negocio/([0-9]+)/?$ modules/crm/detalhes.php?id=$1 [L,QSA]
-RewriteRule ^crm/quadro/?([0-9]*)$ modules/crm/index.php?view=quadro&funil=$1 [L,QSA]
-RewriteRule ^crm/lista/?([0-9]*)$ modules/crm/index.php?view=lista&funil=$1 [L,QSA]
+# CRM (Cliente - Roteador Central)
+RewriteRule ^crm/?(.*)$ index.php?url=crm/$1 [L,QSA]
+
 
 # Atendimento (Cliente - Roteador Central)
 RewriteRule ^atendimento/?(.*)$ index.php?url=atendimento/$1 [L,QSA]
