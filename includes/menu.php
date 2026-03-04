@@ -40,31 +40,78 @@ $showGestao = strpos($uri, '/gestao/') !== false;
 
         <!-- CRM -->
         <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('crm')): ?>
+            <?php $crmActive = strpos($_SERVER['REQUEST_URI'], '/crm') !== false; ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/crm') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>crm">
-                    <i class="bi bi-funnel"></i> <span>CRM</span>
+                <a class="nav-link d-flex align-items-center justify-content-between <?php echo $crmActive ? '' : 'collapsed'; ?>"
+                    href="#submenuCRM" data-bs-toggle="collapse" role="button"
+                    aria-expanded="<?php echo $crmActive ? 'true' : 'false'; ?>" aria-controls="submenuCRM">
+                    <span><i class="bi bi-funnel me-2"></i> CRM</span>
+                    <i class="bi bi-chevron-down" style="font-size:0.8em;"></i>
                 </a>
+                <div class="collapse <?php echo $crmActive ? 'show' : ''; ?>" id="submenuCRM">
+                    <ul class="nav flex-column ms-3 border-start ps-2" style="border-color:rgba(255,255,255,0.15)!important;">
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo (strpos($_SERVER['REQUEST_URI'], '/crm') !== false && strpos($_SERVER['REQUEST_URI'], '/config') === false) ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>crm"><i class="bi bi-view-list me-2"></i> Pipeline</a></li>
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/crm/config') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>crm/config"><i class="bi bi-gear me-2"></i> Configurações</a></li>
+                    </ul>
+                </div>
             </li>
         <?php endif; ?>
 
         <!-- Atendimento -->
         <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('atendimento')): ?>
+            <?php $atendActive = strpos($_SERVER['REQUEST_URI'], '/atendimento') !== false; ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/atendimento') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>atendimento/agentes">
-                    <i class="bi bi-headset"></i> <span>Atendimento</span>
+                <a class="nav-link d-flex align-items-center justify-content-between <?php echo $atendActive ? '' : 'collapsed'; ?>"
+                    href="#submenuAtend" data-bs-toggle="collapse" role="button"
+                    aria-expanded="<?php echo $atendActive ? 'true' : 'false'; ?>" aria-controls="submenuAtend">
+                    <span><i class="bi bi-headset me-2"></i> Atendimento</span>
+                    <i class="bi bi-chevron-down" style="font-size:0.8em;"></i>
                 </a>
+                <div class="collapse <?php echo $atendActive ? 'show' : ''; ?>" id="submenuAtend">
+                    <ul class="nav flex-column ms-3 border-start ps-2" style="border-color:rgba(255,255,255,0.15)!important;">
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/atendimento/agentes') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>atendimento/agentes"><i class="bi bi-robot me-2"></i> Agentes
+                                IA</a></li>
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/atendimento/agentes/chats') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>atendimento/agentes/chats"><i class="bi bi-chat-dots me-2"></i>
+                                Conversas</a></li>
+                    </ul>
+                </div>
             </li>
         <?php endif; ?>
 
         <!-- Marketing -->
         <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('marketing')): ?>
+            <?php $mktActive = strpos($_SERVER['REQUEST_URI'], '/marketing') !== false; ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/marketing') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>marketing">
-                    <i class="bi bi-megaphone"></i> <span>Marketing</span>
+                <a class="nav-link d-flex align-items-center justify-content-between <?php echo $mktActive ? '' : 'collapsed'; ?>"
+                    href="#submenuMkt" data-bs-toggle="collapse" role="button"
+                    aria-expanded="<?php echo $mktActive ? 'true' : 'false'; ?>" aria-controls="submenuMkt">
+                    <span><i class="bi bi-megaphone me-2"></i> Marketing</span>
+                    <i class="bi bi-chevron-down" style="font-size:0.8em;"></i>
                 </a>
+                <div class="collapse <?php echo $mktActive ? 'show' : ''; ?>" id="submenuMkt">
+                    <ul class="nav flex-column ms-3 border-start ps-2" style="border-color:rgba(255,255,255,0.15)!important;">
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/marketing/leads') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>marketing/leads"><i class="bi bi-person-lines-fill me-2"></i>
+                                Leads</a></li>
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/marketing/audiencias') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>marketing/audiencias"><i class="bi bi-people me-2"></i>
+                                Audiências</a></li>
+                        <li class="nav-item my-1"><a
+                                class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/marketing/gerador') !== false ? 'active' : 'text-muted'; ?>"
+                                href="<?php echo BASE_URL; ?>marketing/gerador_leads"><i class="bi bi-magnet me-2"></i> Gerador
+                                de Leads</a></li>
+                    </ul>
+                </div>
             </li>
         <?php endif; ?>
 

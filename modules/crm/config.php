@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../includes/header.php';
 
 if (!isModuleEnabled('crm')) {
@@ -454,4 +454,4 @@ while ($row = $res->fetch_assoc()) {
     }
 </script>
 
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

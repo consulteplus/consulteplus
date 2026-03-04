@@ -1,5 +1,5 @@
 ﻿<?php
-require_once __DIR__ . '/../../../config/config.php';
+require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../includes/header.php';
 
 if (!isModuleEnabled('crm')) {
@@ -989,4 +989,4 @@ $id_negocio = isset($_GET['id']) ? (int) $_GET['id'] : 0;
 <!-- SweetAlert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../includes/footer.php'; ?>

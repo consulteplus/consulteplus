@@ -35,7 +35,7 @@ if (file_exists($csvPath)) {
         $totalLines = 0;
 }
 
-require_once __DIR__ . '/../../../includes/header.php';
+require_once __DIR__ . '/../../includes/header.php';
 ?>
 
 <div class="container py-5">

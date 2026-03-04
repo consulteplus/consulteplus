@@ -6,8 +6,7 @@ if (!isModuleEnabled('crm')) {
     redirect('dashboard?modulo_bloqueado=crm');
     exit;
 }
-require_once __DIR__ . '/../../../config/database.php';
-require_once __DIR__ . '/../../../classes/CrmService.php';
+require_once __DIR__ . '/../../classes/CrmService.php';
 
 checkPermission(['admin', 'cliente']);
 
@@ -928,4 +927,4 @@ if ($view === 'quadro') {
 <!-- Scripts Gerais do CRM -->
 
 
-<?php require_once __DIR__ . '/../../../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../../includes/footer.php'; ?>
