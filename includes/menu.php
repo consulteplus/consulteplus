@@ -115,60 +115,44 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
-        <!-- Diagnóstico -->
-        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
+        <!-- Gestão -->
+        <?php
+        $gestaoActive = strpos($_SERVER['REQUEST_URI'], '/gestao') !== false
+            || strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false;
+        ?>
+        <?php if (hasPermission(['admin', 'cliente']) && (isModuleEnabled('gestao') || isModuleEnabled('ferramentas'))): ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/diagnostico') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>gestao/diagnostico">
-                    <i class="bi bi-ui-checks"></i> <span>Diagnóstico</span>
+                <a class="nav-link d-flex align-items-center justify-content-between <?php echo $gestaoActive ? '' : 'collapsed'; ?>"
+                    href="#submenuGestao" data-bs-toggle="collapse" role="button"
+                    aria-expanded="<?php echo $gestaoActive ? 'true' : 'false'; ?>" aria-controls="submenuGestao">
+                    <span><i class="bi bi-briefcase me-2"></i> Gestão</span>
+                    <i class="bi bi-chevron-down" style="font-size:0.8em;"></i>
                 </a>
+                <div class="collapse <?php echo $gestaoActive ? 'show' : ''; ?>" id="submenuGestao">
+                    <ul class="nav flex-column ms-3 border-start ps-2" style="border-color:rgba(255,255,255,0.15)!important;">
+                        <?php if (isModuleEnabled('ferramentas')): ?>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>ferramentas"><i class="bi bi-tools me-2"></i> Ferramentas</a></li>
+                        <?php endif; ?>
+                        <?php if (isModuleEnabled('gestao')): ?>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/projetos') !== false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>gestao/projetos"><i class="bi bi-diagram-3 me-2"></i> Projetos</a>
+                            </li>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/tarefas') !== false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>gestao/tarefas"><i class="bi bi-kanban me-2"></i> Tarefas</a></li>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/planejamento') !== false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>gestao/planejamento"><i class="bi bi-bullseye me-2"></i> OKRs</a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </li>
         <?php endif; ?>
 
-        <!-- Produtos (Visualização Aluno) -->
-        <?php if (hasPermission(['cliente']) && isModuleEnabled('produtos')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>produtos">
-                    <i class="bi bi-box-seam"></i>
-                    <span>Produtos</span>
-                </a>
-            </li>
-        <?php endif; ?>
-
-        <!-- Gestão Diária (Projetos/Tarefas/OKRs) -->
-        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/projetos') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>gestao/projetos">
-                    <i class="bi bi-diagram-3"></i> <span>Projetos</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/tarefas') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>gestao/tarefas">
-                    <i class="bi bi-kanban"></i> <span>Tarefas</span>
-                </a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/gestao/planejamento') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>gestao/planejamento">
-                    <i class="bi bi-bullseye"></i> <span>OKRs</span>
-                </a>
-            </li>
-        <?php endif; ?>
-
-        <!-- Ferramentas -->
-        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('ferramentas')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>ferramentas">
-                    <i class="bi bi-tools"></i> <span>Ferramentas</span>
-                </a>
-            </li>
-        <?php endif; ?>
 
     <?php endif; ?>
 
