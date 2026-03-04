@@ -179,25 +179,7 @@ RewriteRule ^admin/ferramentas/editar/([0-9]+)/?$ modules/admin/ferramentas/edit
 RewriteRule ^admin/ferramentas/editar/?$ modules/admin/ferramentas/editar.php [L,QSA]
 RewriteRule ^admin/ferramentas/?$ modules/admin/ferramentas/index.php [L]
 
-# CRM (Admin)
-RewriteRule ^admin/crm/?$ modules/admin/crm/index.php [L,QSA]
-RewriteRule ^admin/crm/config/?$ modules/admin/crm/config.php [L,QSA]
-RewriteRule ^admin/crm/negocio/([0-9]+)$ modules/admin/crm/detalhes.php?id=$1 [L,QSA]
-RewriteRule ^admin/crm/quadro/?([0-9]*)$ modules/admin/crm/index.php?view=quadro&funil=$1 [L,QSA]
-RewriteRule ^admin/crm/lista/?([0-9]*)$ modules/admin/crm/index.php?view=lista&funil=$1 [L,QSA]
-RewriteRule ^admin/marketing/gerador_leads/?$ modules/admin/marketing/gerador_leads/index.php [L]
-RewriteRule ^admin/marketing/gerador_leads/acoes/?$ modules/admin/marketing/gerador_leads/acoes.php [L]
-RewriteRule ^admin/marketing/gerador_leads/webhook/?$ modules/admin/marketing/gerador_leads/webhook_receiver.php [L]
-RewriteRule ^admin/marketing/gerador_leads/visualizar_retorno/?$ modules/admin/marketing/gerador_leads/visualizar_retorno.php [L]
 
-# Marketing (Admin)
-RewriteRule ^admin/marketing/leads/([0-9]+)/?$ modules/admin/marketing/leads/ver.php?id=$1 [L]
-
-# Atendimento (Admin)
-RewriteRule ^admin/atendimento/agentes/?$ modules/admin/atendimento/agentes/index.php [L]
-RewriteRule ^admin/atendimento/chats/?$ modules/admin/atendimento/agentes/chats.php [L]
-RewriteRule ^admin/atendimento/agentes/acoes/?$ modules/admin/atendimento/agentes/acoes.php [L,QSA]
-RewriteRule ^admin/atendimento/agentes/conversas/?$ modules/admin/atendimento/agentes/conversas.php [L,QSA]
 
 # Redirect Legacy Mentoria URLs (301 Permanent)
 RedirectMatch 301 ^/consulteplus/admin/mentoria/(.*)$ /consulteplus/admin/produtos/$1
