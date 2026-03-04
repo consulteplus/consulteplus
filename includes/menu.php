@@ -115,23 +115,33 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
-        <!-- Treinamentos -->
-        <?php if (hasPermission(['cliente']) && isModuleEnabled('produtos')): ?>
+        <!-- Produtos (Treinamentos + Ferramentas) -->
+        <?php
+        $produtosActive = (strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false)
+            || strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false;
+        ?>
+        <?php if (hasPermission(['admin', 'cliente']) && (isModuleEnabled('produtos') || isModuleEnabled('ferramentas'))): ?>
             <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>produtos">
-                    <i class="bi bi-play-btn"></i> <span>Treinamentos</span>
+                <a class="nav-link d-flex align-items-center justify-content-between <?php echo $produtosActive ? '' : 'collapsed'; ?>"
+                    href="#submenuProdutos" data-bs-toggle="collapse" role="button"
+                    aria-expanded="<?php echo $produtosActive ? 'true' : 'false'; ?>" aria-controls="submenuProdutos">
+                    <span><i class="bi bi-grid me-2"></i> Produtos</span>
+                    <i class="bi bi-chevron-down" style="font-size:0.8em;"></i>
                 </a>
-            </li>
-        <?php endif; ?>
-
-        <!-- Ferramentas -->
-        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('ferramentas')): ?>
-            <li class="nav-item">
-                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false ? 'active' : ''; ?>"
-                    href="<?php echo BASE_URL; ?>ferramentas">
-                    <i class="bi bi-tools"></i> <span>Ferramentas</span>
-                </a>
+                <div class="collapse <?php echo $produtosActive ? 'show' : ''; ?>" id="submenuProdutos">
+                    <ul class="nav flex-column ms-3 border-start ps-2" style="border-color:rgba(255,255,255,0.15)!important;">
+                        <?php if (isModuleEnabled('produtos')): ?>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>produtos"><i class="bi bi-play-btn me-2"></i> Treinamentos</a></li>
+                        <?php endif; ?>
+                        <?php if (isModuleEnabled('ferramentas')): ?>
+                            <li class="nav-item my-1"><a
+                                    class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/ferramentas') !== false ? 'active' : 'text-muted'; ?>"
+                                    href="<?php echo BASE_URL; ?>ferramentas"><i class="bi bi-tools me-2"></i> Ferramentas</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
             </li>
         <?php endif; ?>
 
