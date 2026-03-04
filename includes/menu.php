@@ -115,6 +115,16 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
+        <!-- Produtos (Visualização Aluno) -->
+        <?php if (hasPermission(['cliente']) && isModuleEnabled('produtos')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/produtos') !== false && strpos($_SERVER['REQUEST_URI'], '/admin/') === false ? 'active' : ''; ?>"
+                    href="<?php echo BASE_URL; ?>produtos">
+                    <i class="bi bi-box-seam"></i> <span>Produtos</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
         <!-- Gestão -->
         <?php
         $gestaoActive = strpos($_SERVER['REQUEST_URI'], '/gestao') !== false
