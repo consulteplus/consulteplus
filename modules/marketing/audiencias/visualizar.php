@@ -184,7 +184,7 @@ $filtros = json_decode($audiencia['filtros_json'], true);
 
     function carregarLeads() {
         $.ajax({
-            url: 'acoes.php?acao=leads&id=' + audienciaId,
+            url: 'acoes?acao=leads&id=' + audienciaId,
             method: 'GET',
             dataType: 'json',
             success: function (response) {

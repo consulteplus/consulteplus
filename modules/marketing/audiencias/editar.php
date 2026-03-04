@@ -371,7 +371,7 @@ if (isset($_GET['id'])) {
             }
 
             $.ajax({
-                url: 'acoes.php?acao=preview',
+                url: 'acoes?acao=preview',
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ filtros }),
@@ -442,7 +442,7 @@ if (isset($_GET['id'])) {
         if (id > 0) dados.id = id;
 
         $.ajax({
-            url: 'acoes.php?acao=salvar',
+            url: 'acoes?acao=salvar',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(dados),

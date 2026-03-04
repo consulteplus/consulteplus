@@ -557,7 +557,7 @@ if (!$id) {
     }
 
     function carregarDados() {
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=buscar&id=' + agenteId)
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=buscar&id=' + agenteId)
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.agente) {
@@ -581,14 +581,14 @@ if (!$id) {
         btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Salvando...';
         btn.disabled = true;
 
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=buscar&id=' + agenteId)
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=buscar&id=' + agenteId)
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.agente) {
                     const agente = response.data.agente;
                     agente.prompt_sistema = markdown;
 
-                    return fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=salvar', {
+                    return fetch(BASE_URL + 'atendimento/agentes/acoes?acao=salvar', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(agente)
@@ -704,7 +704,7 @@ if (!$id) {
         input.disabled = true;
 
         try {
-            const response = await fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=testar_simulacao', {
+            const response = await fetch(BASE_URL + 'atendimento/agentes/acoes?acao=testar_simulacao', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

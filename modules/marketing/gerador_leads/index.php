@@ -347,7 +347,7 @@ if (file_exists($configFile)) {
             whatsapp_webhook_url: document.getElementById('cfgWhatsapp').value
         };
 
-        fetch(BASE_URL + 'marketing/gerador_leads/acoes.php?acao=salvar_config', {
+        fetch(BASE_URL + 'marketing/gerador_leads/acoes?acao=salvar_config', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -381,7 +381,7 @@ if (file_exists($configFile)) {
             didOpen: () => Swal.showLoading()
         });
 
-        fetch(BASE_URL + 'marketing/gerador_leads/acoes.php?acao=trigger_scraping', {
+        fetch(BASE_URL + 'marketing/gerador_leads/acoes?acao=trigger_scraping', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
@@ -572,7 +572,7 @@ if (file_exists($configFile)) {
             confirmButtonText: 'Sim, extrair',
             showLoaderOnConfirm: true,
             preConfirm: () => {
-                return fetch(BASE_URL + 'marketing/gerador_leads/acoes.php?acao=extrair_whatsapp', {
+                return fetch(BASE_URL + 'marketing/gerador_leads/acoes?acao=extrair_whatsapp', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ groupId: groupId, groupName: groupName })
@@ -614,7 +614,7 @@ if (file_exists($configFile)) {
     document.addEventListener('DOMContentLoaded', function () {
         tabelaResultados = $('#tabelaResultados').DataTable({
             language: { url: "https://cdn.datatables.net/plug-ins/1.13.4/i18n/pt-BR.json" },
-            ajax: BASE_URL + 'marketing/gerador_leads/acoes.php?acao=listar_resultados',
+            ajax: BASE_URL + 'marketing/gerador_leads/acoes?acao=listar_resultados',
             columns: [
                 {
                     data: 'id',
@@ -716,7 +716,7 @@ if (file_exists($configFile)) {
             confirmButtonText: 'Sim'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(BASE_URL + 'marketing/gerador_leads/acoes.php?acao=processar_leads', {
+                fetch(BASE_URL + 'marketing/gerador_leads/acoes?acao=processar_leads', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ ids: ids, tipo: tipo })

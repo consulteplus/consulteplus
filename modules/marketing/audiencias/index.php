@@ -128,7 +128,7 @@ if (!hasPermission(['admin', 'superadmin'])) {
 
     function carregarAudiencias() {
         $.ajax({
-            url: 'acoes.php?acao=listar',
+            url: 'acoes?acao=listar',
             method: 'GET',
             dataType: 'json',
             success: function (response) {
@@ -239,7 +239,7 @@ if (!hasPermission(['admin', 'superadmin'])) {
         if (!audienciaIdExcluir) return;
 
         $.ajax({
-            url: 'acoes.php?acao=excluir',
+            url: 'acoes?acao=excluir',
             method: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({ id: audienciaIdExcluir }),

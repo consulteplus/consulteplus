@@ -244,7 +244,7 @@ checkPermission(['admin', 'superadmin']);
 
     function carregarAgentes() {
         const tipo = document.getElementById('filtroTipo').value;
-        const url = BASE_URL + 'atendimento/agentes/acoes.php?acao=listar' + (tipo ? '&tipo=' + tipo : '');
+        const url = BASE_URL + 'atendimento/agentes/acoes?acao=listar' + (tipo ? '&tipo=' + tipo : '');
 
         fetch(url)
             .then(res => res.json())
@@ -365,7 +365,7 @@ checkPermission(['admin', 'superadmin']);
     }
 
     function editarAgente(id) {
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=buscar&id=' + id)
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=buscar&id=' + id)
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.agente) {
@@ -403,7 +403,7 @@ checkPermission(['admin', 'superadmin']);
         // Converter ativo para número
         data.ativo = document.getElementById('agenteAtivo').checked ? 1 : 0;
 
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=salvar', {
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=salvar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -423,7 +423,7 @@ checkPermission(['admin', 'superadmin']);
     function excluirAgente(id) {
         if (!confirm('Deseja excluir este agente? Esta ação não pode ser desfeita.')) return;
 
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=excluir', {
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=excluir', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: id })
@@ -443,7 +443,7 @@ checkPermission(['admin', 'superadmin']);
         const mensagem = prompt('Digite uma mensagem para testar o agente:');
         if (!mensagem) return;
 
-        fetch(BASE_URL + 'atendimento/agentes/acoes.php?acao=testar', {
+        fetch(BASE_URL + 'atendimento/agentes/acoes?acao=testar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ agente_id: id, mensagem: mensagem })

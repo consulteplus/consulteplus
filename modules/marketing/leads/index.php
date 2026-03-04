@@ -221,7 +221,7 @@ checkPermission(['admin', 'cliente']);
                 }
             },
             ajax: {
-                url: BASE_URL + 'marketing/leads/acoes.php?acao=listar',
+                url: BASE_URL + 'marketing/leads/acoes?acao=listar',
                 dataSrc: function (json) {
                     return json.data.leads || [];
                 }
@@ -297,7 +297,7 @@ checkPermission(['admin', 'cliente']);
     }
 
     function loadKPIs() {
-        fetch(BASE_URL + 'marketing/leads/acoes.php?acao=listar')
+        fetch(BASE_URL + 'marketing/leads/acoes?acao=listar')
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.stats) {
@@ -341,7 +341,7 @@ checkPermission(['admin', 'cliente']);
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
 
-        fetch(BASE_URL + 'marketing/leads/acoes.php?acao=salvar', {
+        fetch(BASE_URL + 'marketing/leads/acoes?acao=salvar', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
@@ -360,7 +360,7 @@ checkPermission(['admin', 'cliente']);
     function excluirLead(id) {
         if (!confirm('Deseja excluir este lead?')) return;
 
-        fetch(BASE_URL + 'marketing/leads/acoes.php?acao=excluir', {
+        fetch(BASE_URL + 'marketing/leads/acoes?acao=excluir', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: id })

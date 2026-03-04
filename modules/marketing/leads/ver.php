@@ -237,7 +237,7 @@ if ($leadId === 0) {
     });
 
     function carregarLead() {
-        fetch(BASE_URL + 'marketing/leads/acoes.php?acao=buscar&id=' + LEAD_ID)
+        fetch(BASE_URL + 'marketing/leads/acoes?acao=buscar&id=' + LEAD_ID)
             .then(res => res.json())
             .then(response => {
                 if (response.success && response.data && response.data.lead) {
@@ -367,7 +367,7 @@ if ($leadId === 0) {
     function excluirLead() {
         if (!confirm('Tem certeza que deseja excluir este lead? Esta ação não pode ser desfeita.')) return;
 
-        fetch(BASE_URL + 'marketing/leads/acoes.php?acao=excluir', {
+        fetch(BASE_URL + 'marketing/leads/acoes?acao=excluir', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: LEAD_ID })

@@ -28,7 +28,7 @@ if (!$audiencia) {
 // Buscar leads
 if ($audiencia['tipo'] === 'dinamica') {
     // Buscar leads dinamicamente usando filtros
-    require_once 'acoes.php';
+    require_once 'acoes';
     $leads = buscarLeadsPorFiltros($conn, $company_id, $audiencia['filtros_json']);
 } else {
     // Buscar leads estáticos
