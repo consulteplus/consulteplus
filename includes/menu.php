@@ -48,6 +48,26 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
+        <!-- Atendimento -->
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('atendimento')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/atendimento') !== false ? 'active' : ''; ?>"
+                    href="<?php echo BASE_URL; ?>atendimento/agentes">
+                    <i class="bi bi-headset"></i> <span>Atendimento</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
+        <!-- Marketing -->
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('marketing')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/marketing') !== false ? 'active' : ''; ?>"
+                    href="<?php echo BASE_URL; ?>marketing">
+                    <i class="bi bi-megaphone"></i> <span>Marketing</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
         <!-- Diagnóstico -->
         <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
             <li class="nav-item">
