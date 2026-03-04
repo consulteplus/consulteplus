@@ -38,6 +38,16 @@ $showGestao = strpos($uri, '/gestao/') !== false;
             </li>
         <?php endif; ?>
 
+        <!-- CRM -->
+        <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('crm')): ?>
+            <li class="nav-item">
+                <a class="nav-link <?php echo strpos($_SERVER['REQUEST_URI'], '/crm') !== false ? 'active' : ''; ?>"
+                    href="<?php echo BASE_URL; ?>crm">
+                    <i class="bi bi-funnel"></i> <span>CRM</span>
+                </a>
+            </li>
+        <?php endif; ?>
+
         <!-- Diagnóstico -->
         <?php if (hasPermission(['admin', 'cliente']) && isModuleEnabled('gestao')): ?>
             <li class="nav-item">

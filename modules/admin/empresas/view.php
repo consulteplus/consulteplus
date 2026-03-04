@@ -94,7 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
 
     // SALVAR MÓDULOS
     elseif ($_POST['action'] === 'salvar_modulos') {
-        $modulosConfiguravei = ['gestao', 'ferramentas', 'produtos', 'loja', 'documentacao', 'onboarding', 'minhas-notificacoes'];
+        $modulosConfiguravei = ['crm', 'gestao', 'ferramentas', 'produtos', 'loja', 'documentacao', 'onboarding', 'minhas-notificacoes'];
         foreach ($modulosConfiguravei as $modulo) {
             $ativo = isset($_POST['modulos'][$modulo]) ? 1 : 0;
             $stmt2 = $conn->prepare("
@@ -675,6 +675,7 @@ $tarefas = $stmtTasks->get_result();
                         <input type="hidden" name="action" value="salvar_modulos">
                         <?php
                         $todosModulos = [
+                            'crm'                 => ['icon' => 'bi-funnel',     'label' => 'CRM',            'desc' => 'Pipeline de vendas e negócios'],
                             'gestao'              => ['icon' => 'bi-kanban',      'label' => 'Gestão',         'desc' => 'Projetos, Tarefas, Diagnóstico, OKRs'],
                             'ferramentas'         => ['icon' => 'bi-tools',       'label' => 'Ferramentas',    'desc' => 'SWOT, Canvas, BCG, Porter e mais'],
                             'produtos'            => ['icon' => 'bi-box-seam',    'label' => 'Produtos',       'desc' => 'Cursos e Mentorias'],
