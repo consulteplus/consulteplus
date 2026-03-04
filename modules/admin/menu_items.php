@@ -370,6 +370,12 @@
             id="submenuSistema">
             <ul class="nav flex-column ms-3 border-start border-secondary border-opacity-25 ps-2">
                 <li class="nav-item my-1">
+                    <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/empresas') !== false ? 'active text-white' : 'text-white-50'; ?>"
+                        href="<?php echo BASE_URL; ?>admin/empresas">
+                        <i class="bi bi-buildings me-2"></i> Empresas
+                    </a>
+                </li>
+                <li class="nav-item my-1">
                     <a class="nav-link py-1 <?php echo strpos($_SERVER['REQUEST_URI'], '/admin/usuarios') !== false ? 'active text-white' : 'text-white-50'; ?>"
                         href="<?php echo BASE_URL; ?>admin/usuarios">
                         <i class="bi bi-people-fill me-2"></i> Usuários
